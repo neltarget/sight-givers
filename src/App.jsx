@@ -32,6 +32,9 @@ import InsurancePayment from "./pages/patient-resources/InsurancePayment";
 import DownloadableForms from "./pages/patient-resources/DownloadableForms";
 import FAQs from "./pages/patient-resources/FAQs";
 import PatientTestimonials from "./pages/about-pages/PatientTestimonials";
+
+// promo page
+import PromoPage from "./pages/PromoPage";
 export default function App() {
   return (
     <Router>
@@ -90,6 +93,7 @@ export default function App() {
               />
               <Route path="faqs" element={<FAQs />} />
             </Route>
+            <Route path="/promo" element={<PromoPage />} />
             {/* Catch-all for 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>

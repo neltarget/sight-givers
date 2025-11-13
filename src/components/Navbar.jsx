@@ -9,6 +9,8 @@ import {
   Phone,
   Mail,
   ChevronDown,
+  Tag,
+  Sparkles,
 } from "lucide-react";
 import logo from "../assets/images/sight-givers.png";
 
@@ -52,6 +54,7 @@ export default function Navbar() {
       ],
     },
     { name: "Patient Resources", path: "/patient-resources" },
+    { name: "November Promo", path: "/promo" }, // Added promo page
     { name: "Eye Health Videos", path: "/eye-health-videos" },
     { name: "Contact", path: "/contact" },
   ];
@@ -62,23 +65,70 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      {/* Top bar */}
-      <div className="bg-blue-600 text-white text-sm py-1 px-6 flex justify-between items-center hidden md:flex">
-        <div className="flex gap-4 items-center">
-          <Phone size={16} /> <a href="tel:+233240553897">+233 240 553 897</a>
-          <Mail size={16} />{" "}
-          <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
+      {/* Top bar with Promo Marquee */}
+      <div className="bg-blue-600 text-white text-sm py-1 px-6 hidden md:flex">
+        <div className="w-full flex justify-between items-center">
+          {/* Contact Info - Left */}
+          <div className="flex gap-4 items-center flex-1">
+            <div className="flex gap-4 items-center">
+              <Phone size={16} />{" "}
+              <a href="tel:+233240553897">+233 240 553 897</a>
+              <Mail size={16} />{" "}
+              <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
+            </div>
+          </div>
+
+          {/* Promo Marquee - Center */}
+          <div className="flex-1 flex justify-center">
+            <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-4 py-1 rounded-full shadow-lg animate-pulse mx-4">
+              <div className="flex items-center gap-2 text-sm font-bold whitespace-nowrap">
+                <Sparkles size={14} className="text-blue-700" />
+                <span>
+                  BLACK FRIDAY DEAL: 30% OFF FRAMES & LENSES + FREE EYE EXAM!
+                </span>
+                <Tag size={14} className="text-blue-700" />
+              </div>
+            </div>
+          </div>
+
+          {/* Social Media - Right */}
+          <div className="flex gap-3 items-center flex-1 justify-end">
+            <a href="#" className="hover:text-gray-300">
+              <Facebook size={20} />
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              <Twitter size={20} />
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              <Instagram size={20} />
+            </a>
+          </div>
         </div>
-        <div className="flex gap-3 items-center mr-16">
-          <a href="#" className="hover:text-gray-300">
-            <Facebook size={20} />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <Twitter size={20} />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <Instagram size={20} />
-          </a>
+      </div>
+
+      {/* Alternative Top Bar Layout for Smaller Screens */}
+      <div className="bg-blue-600 text-white text-sm py-1 px-4 md:hidden">
+        <div className="flex flex-col gap-1">
+          {/* Contact Info */}
+          <div className="flex justify-between items-center text-xs">
+            <div className="flex items-center gap-2">
+              <Phone size={12} />
+              <a href="tel:+233240553897">+233 240 553 897</a>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail size={12} />
+              <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
+            </div>
+          </div>
+
+          {/* Promo Banner for Mobile */}
+          <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-3 py-1 rounded-full text-center">
+            <div className="flex items-center justify-center gap-1 text-xs font-bold">
+              <Sparkles size={12} className="text-blue-700" />
+              <span>30% OFF + FREE EYE EXAM</span>
+              <Tag size={12} className="text-blue-700" />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -99,7 +149,7 @@ export default function Navbar() {
                 <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1">
                   {link.name} <ChevronDown size={16} />
                 </span>
-                <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[200px]">
+                <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[200px] z-50">
                   {link.submenu.map((sub) => (
                     <NavLink
                       key={sub.name}
@@ -151,18 +201,17 @@ export default function Navbar() {
       {/* Mobile Nav Dropdown */}
       {isOpen && (
         <nav className="md:hidden bg-white shadow-md px-6 py-4 space-y-4">
-          {/* Top bar info */}
-          <div className="flex flex-col gap-2 mb-4 text-gray-700">
-            <div className="flex items-center gap-2">
-              <Phone size={16} /> +233 240 553 897
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail size={16} /> info@sightgivers.com
-            </div>
-            <div className="flex gap-2">
-              <Facebook size={16} /> <Twitter size={16} />{" "}
-              <Instagram size={16} />
-            </div>
+          {/* Social Media Links */}
+          <div className="flex gap-4 justify-center mb-2">
+            <a href="#" className="text-blue-600 hover:text-blue-800">
+              <Facebook size={20} />
+            </a>
+            <a href="#" className="text-blue-600 hover:text-blue-800">
+              <Twitter size={20} />
+            </a>
+            <a href="#" className="text-blue-600 hover:text-blue-800">
+              <Instagram size={20} />
+            </a>
           </div>
 
           {navLinks.map((link, idx) =>
