@@ -1,14 +1,16 @@
 // src/pages/PromoPage.js
 import React, { useState } from "react";
-import Header from "../components/promo/Header";
 import Hero from "../components/promo/HeroPromo";
 import HowItWorks from "../components/promo/HowItWorks";
 import VoucherForm from "../components/promo/VoucherForm";
+import VoucherDisplay from "../components/promo/VoucherDisplay";
 import AdSidebar from "../components/promo/AdSidebar";
+import CountdownTimer from "../components/promo/CountdownTimer";
 
 const PromoPage = () => {
   const [voucherGenerated, setVoucherGenerated] = useState(false);
   const [voucherCode, setVoucherCode] = useState("");
+  const [userName, setUserName] = useState("");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100">
@@ -21,17 +23,23 @@ const PromoPage = () => {
         <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="flex-1">
-            <Header />
             <Hero />
             <HowItWorks />
-            <VoucherForm
-              onVoucherGenerate={(code) => {
-                setVoucherGenerated(true);
-                setVoucherCode(code);
-              }}
-              voucherGenerated={voucherGenerated}
-              voucherCode={voucherCode}
-            />
+
+            {voucherGenerated ? (
+              <VoucherDisplay voucherCode={voucherCode} userName={userName} />
+            ) : (
+              <VoucherForm
+                onVoucherGenerate={(code, name) => {
+                  setVoucherGenerated(true);
+                  setVoucherCode(code);
+                  setUserName(name);
+                }}
+              />
+            )}
+
+            {/* Compact Countdown Timer */}
+            <CountdownTimer />
           </div>
 
           {/* Desktop Sidebar with Ads - Hidden on mobile, shown on xl screens */}

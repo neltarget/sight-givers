@@ -4,6 +4,7 @@ import Testimonials from "../components/Testimonials";
 import Services from "./Services";
 import Shop from "./Shop";
 import AboutSummary from "../components/AboutSummary";
+import ServiceSummary from "../components/ServiceSummary";
 
 export default function Home() {
   return (
@@ -11,9 +12,9 @@ export default function Home() {
       <Hero />
       <TrustFactors />
       <AboutSummary />
-      <Services />
+      <ServiceSummary />
       <Testimonials />
-      <Shop />
+      {/* <Shop /> */}
     </section>
   );
 }

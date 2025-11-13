@@ -3,7 +3,7 @@ import doctorImage from "../assets/images/dr-light.png";
 
 export default function AboutSummary() {
   return (
-    <section className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6 py-12">
+    <section className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6 py-4">
       {/* Doctor Image */}
       <div className="flex-shrink-0">
         <img

@@ -7,22 +7,23 @@ const HowItWorks = () => {
     {
       icon: ClipboardList,
       title: "Fill Form & Follow",
-      description: "Enter your details and follow us on Facebook for updates",
+      description:
+        "Enter your details and follow us on Facebook for exclusive deals and updates",
     },
     {
       icon: Download,
       title: "Save Voucher",
-      description: "Download or screenshot your digital voucher",
+      description: "Print or screenshot your digital voucher",
     },
     {
       icon: Calendar,
       title: "Visit Clinic",
-      description: "Book appointment or walk in Nov 15th-30th",
+      description: "Walk in to our eye clinic from November 15th - 30th",
     },
     {
       icon: Star,
       title: "Review & Get Gift",
-      description: "Leave a Google review for a thank-you gift",
+      description: "Leave a Google review for free cleaning spray",
     },
   ];
 

@@ -1,9 +1,8 @@
 // src/components/promo/VoucherForm.js
 import React, { useState } from "react";
-import { Facebook, Download, Printer, MapPin } from "lucide-react";
-import VoucherDisplay from "./VoucherDisplay";
+import { Facebook, MapPin, Loader } from "lucide-react";
 
-const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
+const VoucherForm = ({ onVoucherGenerate }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -12,6 +11,7 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
     followedFacebook: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -19,78 +19,127 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+    if (submitError) setSubmitError("");
   };
 
   const generateVoucherCode = () => {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    return `SG-Nov-${randomNum}`;
+    return `SG-NOV-${randomNum}`;
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      return "Please enter your full name";
+    }
+    if (!formData.phone.trim()) {
+      return "Please enter your phone number";
+    }
+    if (!formData.email.trim()) {
+      return "Please enter your email address";
+    }
+    if (!formData.location.trim()) {
+      return "Please enter your location";
+    }
+    if (!formData.followedFacebook) {
+      return "Please confirm that you have followed us on Facebook";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return "Please enter a valid email address";
+    }
+
+    return null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.followedFacebook) {
-      alert(
-        "Please confirm that you have followed us on Facebook to claim your voucher."
-      );
-      return;
-    }
-
-    if (!formData.location.trim()) {
-      alert("Please enter your location to help us serve you better.");
+    const validationError = validateForm();
+    if (validationError) {
+      setSubmitError(validationError);
       return;
     }
 
     setIsSubmitting(true);
+    setSubmitError("");
 
     try {
       const voucherCode = generateVoucherCode();
       const timestamp = new Date().toISOString();
 
-      // Prepare data for Google Sheets
       const sheetData = {
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        location: formData.location,
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        location: formData.location.trim(),
         voucherCode: voucherCode,
         timestamp: timestamp,
         redeemed: "FALSE",
       };
 
-      // Replace with your Google Apps Script Web App URL
-      const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+      const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzK4b0GJVfXHOUyshkOsxMcd4dfq2JdqG7rQVGQlWgMt7iUlb6412MW3eFRsfNziMA/exec";
 
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(sheetData),
-      });
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sheetData),
+        });
 
-      if (response.ok) {
-        onVoucherGenerate(voucherCode);
-      } else {
-        throw new Error("Failed to save data");
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            onVoucherGenerate(voucherCode, formData.name.trim());
+            return;
+          } else {
+            throw new Error(result.error || "Failed to save voucher data");
+          }
+        } else {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      } catch (corsError) {
+        console.log("CORS approach failed, trying no-cors:", corsError);
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sheetData),
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        onVoucherGenerate(voucherCode, formData.name.trim());
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error generating your voucher. Please try again.");
+      console.error("Error in voucher generation:", error);
+      setSubmitError(
+        "We encountered an issue saving your data, but your voucher has been generated. Please save it carefully."
+      );
+
+      const voucherCode = generateVoucherCode();
+      onVoucherGenerate(voucherCode, formData.name.trim());
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  if (voucherGenerated) {
-    return <VoucherDisplay voucherCode={voucherCode} />;
-  }
 
   return (
     <section className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 xs:p-5 sm:p-6 lg:p-8 max-w-4xl mx-auto">
       <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 xs:mb-5 sm:mb-6 text-center">
         Claim Your Voucher
       </h2>
+
+      {submitError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+          <p className="text-red-700 text-sm">{submitError}</p>
+        </div>
+      )}
 
       <form
         onSubmit={handleSubmit}
@@ -112,7 +161,8 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
               value={formData.name}
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-              placeholder="Enter your full name"
+              placeholder="Enter your full name as on ID card"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -132,6 +182,7 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               placeholder="Enter your phone number"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -151,10 +202,10 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               placeholder="Enter your email address"
+              disabled={isSubmitting}
             />
           </div>
 
-          {/* Location Field */}
           <div>
             <label
               htmlFor="location"
@@ -173,6 +224,7 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
                 onChange={handleChange}
                 className="w-full pl-10 xs:pl-12 pr-3 xs:pr-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 placeholder="Enter your city or area"
+                disabled={isSubmitting}
               />
             </div>
             <p className="text-xs xs:text-sm text-gray-500 mt-1 xs:mt-2">
@@ -181,7 +233,6 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
           </div>
         </div>
 
-        {/* Facebook Follow - Honor System */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 xs:p-4 sm:p-5">
           <div className="flex items-start gap-2 xs:gap-3 sm:gap-4">
             <Facebook className="h-5 w-5 xs:h-6 xs:w-6 sm:h-7 sm:w-7 text-blue-600 mt-0.5 xs:mt-1 flex-shrink-0" />
@@ -210,6 +261,7 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
                   checked={formData.followedFacebook}
                   onChange={handleChange}
                   className="w-4 h-4 xs:w-5 xs:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0"
+                  disabled={isSubmitting}
                 />
                 <label
                   htmlFor="followedFacebook"
@@ -225,14 +277,21 @@ const VoucherForm = ({ onVoucherGenerate, voucherGenerated, voucherCode }) => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 xs:py-4 px-6 rounded-lg font-semibold text-base xs:text-lg sm:text-xl hover:from-blue-700 hover:to-cyan-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 xs:py-4 px-6 rounded-lg font-semibold text-base xs:text-lg sm:text-xl hover:from-blue-700 hover:to-cyan-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          {isSubmitting ? "Generating Voucher..." : "Generate My Voucher"}
+          {isSubmitting ? (
+            <>
+              <Loader className="h-5 w-5 animate-spin" />
+              Generating Voucher...
+            </>
+          ) : (
+            "Generate My Voucher"
+          )}
         </button>
 
         <p className="text-xs xs:text-sm text-gray-500 text-center">
           By claiming this voucher, you agree to our terms and conditions.
-          Voucher valid from November 15th to 30th, 2024.
+          Voucher valid from November 15th to 30th, 2025.
         </p>
       </form>
     </section>

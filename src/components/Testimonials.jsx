@@ -70,7 +70,7 @@ function StarRating({ count }) {
 
 export default function TestimonialsScroller() {
   return (
-    <div className="bg-gray-100 py-3 overflow-hidden">
+    <div className="bg-gray-100 mb-3 py-6 overflow-hidden">
       <h2 className="text-2xl font-bold text-center mb-4">
         What Our Patients Say
       </h2>

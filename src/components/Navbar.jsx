@@ -54,7 +54,7 @@ export default function Navbar() {
       ],
     },
     { name: "Patient Resources", path: "/patient-resources" },
-    { name: "November Promo", path: "/promo" }, // Added promo page
+    { name: "Promotions", path: "/promo" },
     { name: "Eye Health Videos", path: "/eye-health-videos" },
     { name: "Contact", path: "/contact" },
   ];
@@ -65,97 +65,113 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      {/* Top bar with Promo Marquee */}
-      <div className="bg-blue-600 text-white text-sm py-1 px-6 hidden md:flex">
-        <div className="w-full flex justify-between items-center">
-          {/* Contact Info - Left */}
-          <div className="flex gap-4 items-center flex-1">
-            <div className="flex gap-4 items-center">
-              <Phone size={16} />{" "}
-              <a href="tel:+233240553897">+233 240 553 897</a>
-              <Mail size={16} />{" "}
-              <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
-            </div>
-          </div>
-
-          {/* Promo Marquee - Center */}
-          <div className="flex-1 flex justify-center">
-            <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-4 py-1 rounded-full shadow-lg animate-pulse mx-4">
-              <div className="flex items-center gap-2 text-sm font-bold whitespace-nowrap">
-                <Sparkles size={14} className="text-blue-700" />
-                <span>
-                  BLACK FRIDAY DEAL: 30% OFF FRAMES & LENSES + FREE EYE EXAM!
-                </span>
-                <Tag size={14} className="text-blue-700" />
+      {/* Top bar with Promo Marquee - Optimized layout */}
+      <div className="bg-blue-600 text-white text-sm py-1 px-4 lg:px-6 hidden md:flex">
+        <div className="w-full flex items-center justify-between gap-4">
+          {/* Contact Info - Left - Now more compact */}
+          <div className="flex-shrink-0">
+            <div className="flex items-center gap-3 text-xs">
+              <div className="flex items-center gap-1 whitespace-nowrap">
+                <Phone size={14} />
+                <a href="tel:+233240553897">+233 240 553 897</a>
+              </div>
+              <div className="flex items-center gap-1 whitespace-nowrap">
+                <Mail size={14} />
+                <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
               </div>
             </div>
           </div>
 
-          {/* Social Media - Right */}
-          <div className="flex gap-3 items-center flex-1 justify-end">
-            <a href="#" className="hover:text-gray-300">
-              <Facebook size={20} />
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              <Twitter size={20} />
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              <Instagram size={20} />
-            </a>
+          {/* Promo Marquee - Center - Adjusted spacing */}
+          <div className="flex-1 min-w-0 flex justify-center">
+            <Link
+              to="/promo"
+              className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-3 py-1 rounded-full shadow-lg animate-pulse hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 cursor-pointer mx-2"
+            >
+              <div className="flex items-center gap-2 text-xs font-bold whitespace-nowrap">
+                <Sparkles size={12} className="text-blue-700" />
+                <span className="truncate">
+                  FREE EYE SCREENING + 30% OFF FRAMES & LENSES!
+                </span>
+                <Tag size={12} className="text-blue-700" />
+              </div>
+            </Link>
+          </div>
+
+          {/* Social Media - Right - Compact */}
+          <div className="flex-shrink-0">
+            <div className="flex gap-2 items-center">
+              <a href="#" className="hover:text-gray-300">
+                <Facebook size={16} />
+              </a>
+              <a href="#" className="hover:text-gray-300">
+                <Twitter size={16} />
+              </a>
+              <a href="#" className="hover:text-gray-300">
+                <Instagram size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Alternative Top Bar Layout for Smaller Screens */}
-      <div className="bg-blue-600 text-white text-sm py-1 px-4 md:hidden">
+      <div className="bg-blue-600 text-white text-sm py-1 px-3 md:hidden">
         <div className="flex flex-col gap-1">
-          {/* Contact Info */}
+          {/* Contact Info - More compact for mobile */}
           <div className="flex justify-between items-center text-xs">
-            <div className="flex items-center gap-2">
-              <Phone size={12} />
-              <a href="tel:+233240553897">+233 240 553 897</a>
+            <div className="flex items-center gap-1 whitespace-nowrap">
+              <Phone size={10} />
+              <a href="tel:+233240553897" className="text-xs">
+                +233 240 553 897
+              </a>
             </div>
-            <div className="flex items-center gap-2">
-              <Mail size={12} />
-              <a href="mailto:info@sightgivers.com">info@sightgivers.com</a>
+            <div className="flex items-center gap-1 whitespace-nowrap">
+              <Mail size={10} />
+              <a href="mailto:info@sightgivers.com" className="text-xs">
+                info@sightgivers
+              </a>
             </div>
           </div>
 
-          {/* Promo Banner for Mobile */}
-          <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-3 py-1 rounded-full text-center">
-            <div className="flex items-center justify-center gap-1 text-xs font-bold">
-              <Sparkles size={12} className="text-blue-700" />
-              <span>30% OFF + FREE EYE EXAM</span>
-              <Tag size={12} className="text-blue-700" />
+          {/* Promo Banner for Mobile - More compact */}
+          <Link
+            to="/promo"
+            className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-2 py-1 rounded-full text-center hover:from-yellow-300 hover:to-orange-300 transition-all duration-300"
+          >
+            <div className="flex items-center justify-center gap-1 text-xs font-bold whitespace-nowrap">
+              <Sparkles size={10} className="text-blue-700" />
+              <span className="truncate text-xs">FREE SCREENING + 30% OFF</span>
+              <Tag size={10} className="text-blue-700" />
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 
       {/* Main navbar */}
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
         <Link to="/" className="text-2xl font-bold text-blue-700">
           <img src={logo} className="w-24 h-12" alt="Sight Givers Logo" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) =>
             link.submenu ? (
               <div
                 key={link.name}
                 className="relative group flex items-center gap-1 cursor-pointer"
               >
-                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1">
-                  {link.name} <ChevronDown size={16} />
+                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1 text-sm lg:text-base">
+                  {link.name} <ChevronDown size={14} />
                 </span>
-                <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[200px] z-50">
+                <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[180px] z-50">
                   {link.submenu.map((sub) => (
                     <NavLink
                       key={sub.name}
                       to={sub.path}
                       className={({ isActive }) =>
-                        `block px-4 py-2 text-gray-700 hover:bg-blue-100 ${
+                        `block px-4 py-2 text-gray-700 hover:bg-blue-100 text-sm ${
                           isActive ? "text-blue-600 font-semibold" : ""
                         }`
                       }
@@ -170,7 +186,7 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `font-medium transition ${
+                  `font-medium transition text-sm lg:text-base ${
                     isActive
                       ? "text-blue-600"
                       : "text-gray-700 hover:text-blue-600"
@@ -183,7 +199,7 @@ export default function Navbar() {
           )}
           <Link
             to="/booking"
-            className="ml-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+            className="ml-2 bg-blue-600 text-white px-3 py-2 rounded-lg shadow hover:bg-blue-700 transition text-sm"
           >
             Book Appointment
           </Link>
@@ -194,23 +210,23 @@ export default function Navbar() {
           className="md:hidden text-gray-700"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Nav Dropdown */}
       {isOpen && (
-        <nav className="md:hidden bg-white shadow-md px-6 py-4 space-y-4">
+        <nav className="md:hidden bg-white shadow-md px-4 py-4 space-y-3">
           {/* Social Media Links */}
-          <div className="flex gap-4 justify-center mb-2">
+          <div className="flex gap-3 justify-center mb-2">
             <a href="#" className="text-blue-600 hover:text-blue-800">
-              <Facebook size={20} />
+              <Facebook size={18} />
             </a>
             <a href="#" className="text-blue-600 hover:text-blue-800">
-              <Twitter size={20} />
+              <Twitter size={18} />
             </a>
             <a href="#" className="text-blue-600 hover:text-blue-800">
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
           </div>
 
@@ -218,28 +234,28 @@ export default function Navbar() {
             link.submenu ? (
               <div key={idx} className="flex flex-col gap-2">
                 <button
-                  className="flex justify-between w-full font-medium text-gray-700"
+                  className="flex justify-between w-full font-medium text-gray-700 text-sm"
                   onClick={() =>
                     setOpenSubmenu(openSubmenu === idx ? null : idx)
                   }
                 >
                   {link.name}{" "}
                   <ChevronDown
-                    size={16}
+                    size={14}
                     className={`transition-transform ${
                       openSubmenu === idx ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 {openSubmenu === idx && (
-                  <div className="flex flex-col pl-4 mt-1">
+                  <div className="flex flex-col pl-3 mt-1">
                     {link.submenu.map((sub) => (
                       <NavLink
                         key={sub.name}
                         to={sub.path}
                         onClick={() => setIsOpen(false)}
                         className={({ isActive }) =>
-                          `block py-1 text-gray-700 hover:text-blue-600 ${
+                          `block py-1 text-gray-700 hover:text-blue-600 text-sm ${
                             isActive ? "text-blue-600 font-semibold" : ""
                           }`
                         }
@@ -256,7 +272,7 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `block font-medium ${
+                  `block font-medium text-sm ${
                     isActive
                       ? "text-blue-600"
                       : "text-gray-700 hover:text-blue-600"
@@ -271,7 +287,7 @@ export default function Navbar() {
           <Link
             to="/booking"
             onClick={() => setIsOpen(false)}
-            className="block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center mt-2"
+            className="block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center mt-2 text-sm"
           >
             Book Appointment
           </Link>
