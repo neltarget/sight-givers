@@ -245,7 +245,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
                 hear about exclusive promotions and eye care tips.
               </p>
               <a
-                href="https://facebook.com/sightgivers"
+                href="https://www.facebook.com/profile.php?id=100082925554469"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 xs:gap-2 bg-blue-600 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg hover:bg-blue-700 transition text-xs xs:text-sm mb-2 xs:mb-3"
