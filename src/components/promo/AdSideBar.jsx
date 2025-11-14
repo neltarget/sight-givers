@@ -1,4 +1,4 @@
-// src/components/promo/AdSidebar.js
+// src/components/promo/AdSidebar.jsx
 import React from "react";
 
 const AdSidebar = () => {
