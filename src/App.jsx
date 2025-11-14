@@ -35,6 +35,9 @@ import PatientTestimonials from "./pages/about-pages/PatientTestimonials";
 
 // promo page
 import PromoPage from "./pages/PromoPage";
+
+// eye health videos
+import { EyeHealthVideos } from "./pages/EyeHealthVideos";
 export default function App() {
   return (
     <Router>
@@ -93,7 +96,13 @@ export default function App() {
               />
               <Route path="faqs" element={<FAQs />} />
             </Route>
+
+            {/* promo page */}
             <Route path="/promo" element={<PromoPage />} />
+
+            {/* eye health videos */}
+            <Route path="/eye-health-videos" element={<EyeHealthVideos />} />
+            
             {/* Catch-all for 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -176,7 +176,7 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
                 <h3>How to Use:</h3>
                 <ul>
                   <li>Present this voucher</li>
-                  <li>Book or walk in</li>
+                  <li>Walk in to our Eye Clinic</li>
                   <li>Show review for gift</li>
                 </ul>
               </div>
@@ -186,9 +186,8 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
               <h4>Important Notes:</h4>
               <ul>
                 <li>Present voucher at reception</li>
-                <li>Not combinable with other offers</li>
+                <li>Cannot be combined with other offers</li>
                 <li>Show review for free cleaning spray</li>
-                <li>New customers only</li>
               </ul>
             </div>
           </div>
@@ -318,7 +317,7 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
               </h4>
               <ul className="text-xs xs:text-sm sm:text-base text-gray-600 space-y-1">
                 <li>• Present this voucher at reception</li>
-                <li>• Book appointment or walk in</li>
+                <li>• Walk in to our Eye Clinic</li>
                 <li>• Show Google review for bonus gift</li>
               </ul>
             </div>
@@ -363,8 +362,7 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
           <li>• Voucher must be presented at time of service</li>
           <li>• Cannot be combined with other offers</li>
           <li>• Show your Google review receipt for free cleaning spray</li>
-          <li>• Promotion valid for new customers only</li>
-          <li>• Clinic hours: Mon-Fri 9AM-6PM, Sat 10AM-4PM</li>
+          <li>• Clinic hours: Mon-Fri 8AM-5PM, Sat 9AM-5PM</li>
         </ul>
       </div>
     </section>

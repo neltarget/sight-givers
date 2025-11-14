@@ -26,7 +26,6 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
     {
       name: "About",
       path: "/about",
@@ -53,10 +52,10 @@ export default function Navbar() {
         { name: "Door To Door Services", path: "/services/door-to-door" },
       ],
     },
+    { name: "Contact", path: "/contact" },
     { name: "Patient Resources", path: "/patient-resources" },
     { name: "🎁Promotions", path: "/promo" },
     { name: "Eye Health Videos", path: "/eye-health-videos" },
-    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -101,7 +100,10 @@ export default function Navbar() {
           {/* Social Media - Right - Compact */}
           <div className="flex-shrink-0">
             <div className="flex gap-2 items-center">
-              <a href="#" className="hover:text-gray-300">
+              <a
+                href="https://www.facebook.com/profile.php?id=100082925554469"
+                className="hover:text-gray-300"
+              >
                 <Facebook size={16} />
               </a>
               <a href="#" className="hover:text-gray-300">
@@ -219,7 +221,10 @@ export default function Navbar() {
         <nav className="md:hidden bg-white shadow-md px-4 py-4 space-y-3">
           {/* Social Media Links */}
           <div className="flex gap-3 justify-center mb-2">
-            <a href="#" className="text-blue-600 hover:text-blue-800">
+            <a
+              href="https://www.facebook.com/profile.php?id=100082925554469"
+              className="text-blue-600 hover:text-blue-800"
+            >
               <Facebook size={18} />
             </a>
             <a href="#" className="text-blue-600 hover:text-blue-800">
