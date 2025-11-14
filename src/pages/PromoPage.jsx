@@ -1,6 +1,6 @@
 // src/pages/PromoPage.js
 import React, { useState } from "react";
-import Hero from "../components/promo/HeroPromo";
+import HeroPromo from "../components/promo/HeroPromo";
 import HowItWorks from "../components/promo/HowItWorks";
 import VoucherForm from "../components/promo/VoucherForm";
 import VoucherDisplay from "../components/promo/VoucherDisplay";
@@ -23,7 +23,7 @@ const PromoPage = () => {
         <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="flex-1">
-            <Hero />
+            <HeroPromo />
             <HowItWorks />
 
             {voucherGenerated ? (
