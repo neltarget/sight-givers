@@ -54,7 +54,7 @@ export default function Navbar() {
       ],
     },
     { name: "Patient Resources", path: "/patient-resources" },
-    { name: "Promotions", path: "/promo" },
+    { name: "🎁Promotions", path: "/promo" },
     { name: "Eye Health Videos", path: "/eye-health-videos" },
     { name: "Contact", path: "/contact" },
   ];
@@ -68,7 +68,7 @@ export default function Navbar() {
       {/* Top bar with Promo Marquee - Optimized layout */}
       <div className="bg-blue-600 text-white text-sm py-1 px-4 lg:px-6 hidden md:flex">
         <div className="w-full flex items-center justify-between gap-4">
-          {/* Contact Info - Left - Now more compact */}
+          {/* Contact Info - Left */}
           <div className="flex-shrink-0">
             <div className="flex items-center gap-3 text-xs">
               <div className="flex items-center gap-1 whitespace-nowrap">
@@ -82,7 +82,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Promo Marquee - Center - Adjusted spacing */}
+          {/* Promo Marquee - Center*/}
           <div className="flex-1 min-w-0 flex justify-center">
             <Link
               to="/promo"
@@ -134,7 +134,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Promo Banner for Mobile - More compact */}
+          {/* Promo Banner for Mobile */}
           <Link
             to="/promo"
             className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-2 py-1 rounded-full text-center hover:from-yellow-300 hover:to-orange-300 transition-all duration-300"
@@ -162,7 +162,7 @@ export default function Navbar() {
                 key={link.name}
                 className="relative group flex items-center gap-1 cursor-pointer"
               >
-                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1 text-sm lg:text-base">
+                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1 text-base lg:text-lg">
                   {link.name} <ChevronDown size={14} />
                 </span>
                 <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[180px] z-50">
@@ -186,7 +186,7 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `font-medium transition text-sm lg:text-base ${
+                  `font-medium transition text-base lg:text-lg ${
                     isActive
                       ? "text-blue-600"
                       : "text-gray-700 hover:text-blue-600"
@@ -199,7 +199,7 @@ export default function Navbar() {
           )}
           <Link
             to="/booking"
-            className="ml-2 bg-blue-600 text-white px-3 py-2 rounded-lg shadow hover:bg-blue-700 transition text-sm"
+            className="ml-2 bg-blue-600 text-white px-3 py-2 rounded-lg shadow hover:bg-blue-700 transition text-base"
           >
             Book Appointment
           </Link>
