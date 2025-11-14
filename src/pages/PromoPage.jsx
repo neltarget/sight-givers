@@ -1,11 +1,11 @@
 // src/pages/PromoPage.js
 import React, { useState } from "react";
-import HeroPromo from "../components/promo/HeroPromo";
-import HowItWorks from "../components/promo/HowItWorks";
-import VoucherForm from "../components/promo/VoucherForm";
-import VoucherDisplay from "../components/promo/VoucherDisplay";
-import AdSidebar from "../components/promo/AdSidebar";
-import CountdownTimer from "../components/promo/CountdownTimer";
+import HeroPromo from "../components/promo/HeroPromo.jsx";
+import HowItWorks from "../components/promo/HowItWorks.jsx";
+import VoucherForm from "../components/promo/VoucherForm.jsx";
+import VoucherDisplay from "../components/promo/VoucherDisplay.jsx";
+import AdSidebar from "../components/promo/AdSidebar.jsx";
+import CountdownTimer from "../components/promo/CountdownTimer.jsx";
 
 const PromoPage = () => {
   const [voucherGenerated, setVoucherGenerated] = useState(false);
