@@ -1,4 +1,4 @@
-// src/components/promo/VoucherForm.js
+// src/components/promo/VoucherForm.jsx
 import React, { useState } from "react";
 import { Facebook, MapPin, Loader } from "lucide-react";
 
@@ -12,6 +12,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [facebookLinkClicked, setFacebookLinkClicked] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,6 +21,15 @@ const VoucherForm = ({ onVoucherGenerate }) => {
       [name]: type === "checkbox" ? checked : value,
     }));
     if (submitError) setSubmitError("");
+  };
+
+  const handleFacebookLinkClick = () => {
+    setFacebookLinkClicked(true);
+    // Open in new tab
+    window.open(
+      "https://www.facebook.com/profile.php?id=100082925554469",
+      "_blank"
+    );
   };
 
   const generateVoucherCode = () => {
@@ -244,15 +254,14 @@ const VoucherForm = ({ onVoucherGenerate }) => {
                 Follow us on Facebook to claim your voucher and be the first to
                 hear about exclusive promotions and eye care tips.
               </p>
-              <a
-                href="https://www.facebook.com/profile.php?id=100082925554469"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={handleFacebookLinkClick}
                 className="inline-flex items-center gap-1 xs:gap-2 bg-blue-600 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg hover:bg-blue-700 transition text-xs xs:text-sm mb-2 xs:mb-3"
               >
                 <Facebook className="h-3 w-3 xs:h-4 xs:w-4" />
                 Follow Us on Facebook
-              </a>
+              </button>
               <div className="flex items-center gap-2 xs:gap-3">
                 <input
                   type="checkbox"
@@ -260,16 +269,26 @@ const VoucherForm = ({ onVoucherGenerate }) => {
                   name="followedFacebook"
                   checked={formData.followedFacebook}
                   onChange={handleChange}
-                  className="w-4 h-4 xs:w-5 xs:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0"
-                  disabled={isSubmitting}
+                  disabled={!facebookLinkClicked || isSubmitting}
+                  className="w-4 h-4 xs:w-5 xs:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <label
                   htmlFor="followedFacebook"
-                  className="text-xs xs:text-sm sm:text-base text-gray-700"
+                  className={`text-xs xs:text-sm sm:text-base ${
+                    !facebookLinkClicked ? "text-gray-400" : "text-gray-700"
+                  }`}
                 >
-                  I have followed Sight Givers on Facebook
+                  {facebookLinkClicked
+                    ? "I have followed Sight Givers on Facebook"
+                    : "Click the Facebook link above to enable this checkbox"}
                 </label>
               </div>
+              {facebookLinkClicked && (
+                <p className="text-green-600 text-xs mt-2">
+                  ✓ Facebook link opened! Please follow our page and then check
+                  the box above.
+                </p>
+              )}
             </div>
           </div>
         </div>

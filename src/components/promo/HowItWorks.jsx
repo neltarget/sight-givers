@@ -23,7 +23,7 @@ const HowItWorks = () => {
     {
       icon: Star,
       title: "Review & Get Gift",
-      description: "Leave a Google review for free cleaning spray",
+      description: "Leave a review for a free cleaning spray",
     },
   ];
 
