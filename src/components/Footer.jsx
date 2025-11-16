@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../../src/assets/images/sight-givers.png";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaWhatsapp, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
@@ -8,9 +9,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* About Clinic */}
         <div>
-          <h3 className="text-xl font-semibold mb-3">
-            Sight Givers Eye Clinic
-          </h3>
+          <div className="flex items-center gap-3 mb-3">
+            <img
+              src={logo}
+              alt="Sight Givers Logo"
+              className="h-10 w-10 object-contain bg-white rounded"
+            />
+            <h3 className="text-xl font-semibold">Sight Givers Eye Clinic</h3>
+          </div>
           <p className="text-sm leading-relaxed text-blue-100">
             We are dedicated to providing comprehensive and accessible eye care
             with the highest standards. From eye exams to advanced surgeries, we

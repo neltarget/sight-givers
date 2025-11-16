@@ -11,7 +11,8 @@ const CountdownTimer = () => {
   // Countdown timer calculation
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const promotionEnd = new Date("November 30, 2024 23:59:59").getTime();
+      // Corrected date: November 30, 2025 23:59:59
+      const promotionEnd = new Date("November 30, 2025 23:59:59").getTime();
       const now = new Date().getTime();
       const difference = promotionEnd - now;
 
