@@ -13,7 +13,7 @@ export default function Footer() {
             <img
               src={logo}
               alt="Sight Givers Logo"
-              className="h-10 w-10 object-contain bg-white rounded"
+              className="h-10 w-10 object-contain bg-white rounded-full p-0.5"
             />
             <h3 className="text-xl font-semibold">Sight Givers Eye Clinic</h3>
           </div>
