@@ -54,7 +54,7 @@ export default function Navbar() {
     },
     { name: "Contact", path: "/contact" },
     { name: "Patient Resources", path: "/patient-resources" },
-    { name: "🎁Promotions", path: "/promo" },
+    { name: "🎁Promotions", path: "/promos" },
     { name: "Eye Health Videos", path: "/eye-health-videos" },
   ];
 
@@ -84,7 +84,7 @@ export default function Navbar() {
           {/* Promo Marquee - Center*/}
           <div className="flex-1 min-w-0 flex justify-center">
             <Link
-              to="/promo"
+              to="/promos"
               className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-3 py-1 rounded-full shadow-lg animate-pulse hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 cursor-pointer mx-2"
             >
               <div className="flex items-center gap-2 text-xs font-bold whitespace-nowrap">
@@ -138,7 +138,7 @@ export default function Navbar() {
 
           {/* Promo Banner for Mobile */}
           <Link
-            to="/promo"
+            to="/promos"
             className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-2 py-1 rounded-full text-center hover:from-yellow-300 hover:to-orange-300 transition-all duration-300"
           >
             <div className="flex items-center justify-center gap-1 text-xs font-bold whitespace-nowrap">
@@ -152,19 +152,25 @@ export default function Navbar() {
 
       {/* Main navbar */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
-        <Link to="/" className="text-2xl font-bold text-blue-700">
-          <img src={logo} className="w-24 h-12" alt="Sight Givers Logo" />
+        <Link
+          to="/"
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0"
+        >
+          <img src={logo} className="w-20 h-10" alt="Sight Givers Logo" />
+          <span className="text-3xl font-bold text-blue-500 whitespace-nowrap">
+            Sight Givers
+          </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-5 flex-1 justify-end min-w-0">
           {navLinks.map((link) =>
             link.submenu ? (
               <div
                 key={link.name}
-                className="relative group flex items-center gap-1 cursor-pointer"
+                className="relative group flex items-center gap-1 cursor-pointer flex-shrink-0"
               >
-                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1 text-base lg:text-lg">
+                <span className="font-medium text-gray-700 hover:text-blue-600 flex items-center gap-1 text-sm lg:text-base whitespace-nowrap">
                   {link.name} <ChevronDown size={14} />
                 </span>
                 <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 invisible group-hover:visible min-w-[180px] z-50">
@@ -188,7 +194,7 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `font-medium transition text-base lg:text-lg ${
+                  `font-medium transition text-sm lg:text-base whitespace-nowrap flex-shrink-0 ${
                     isActive
                       ? "text-blue-600"
                       : "text-gray-700 hover:text-blue-600"
@@ -201,7 +207,7 @@ export default function Navbar() {
           )}
           <Link
             to="/booking"
-            className="ml-2 bg-blue-600 text-white px-3 py-2 rounded-lg shadow hover:bg-blue-700 transition text-base"
+            className="ml-2 bg-blue-600 text-white px-3 py-2 rounded-lg shadow hover:bg-blue-700 transition text-sm whitespace-nowrap flex-shrink-0"
           >
             Book Appointment
           </Link>
@@ -209,7 +215,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700"
+          className="md:hidden text-gray-700 flex-shrink-0"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}

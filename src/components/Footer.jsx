@@ -89,13 +89,13 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-200">
-              <FaFacebook size={20} />
-            </a>
             <a
               href="https://www.facebook.com/profile.php?id=100082925554469"
               className="hover:text-gray-200"
             >
+              <FaFacebook size={20} />
+            </a>
+            <a href="#" className="hover:text-gray-200">
               <FaTwitter size={20} />
             </a>
             <a href="#" className="hover:text-gray-200">

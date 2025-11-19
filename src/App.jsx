@@ -98,7 +98,7 @@ export default function App() {
             </Route>
 
             {/* promo page */}
-            <Route path="/promo" element={<PromoPage />} />
+            <Route path="/promos" element={<PromoPage />} />
 
             {/* eye health videos */}
             <Route path="/eye-health-videos" element={<EyeHealthVideos />} />
