@@ -86,4 +86,4 @@ const PromoCard = ({ promo, onSelect }) => {
   );
 };
 
-export default PromoCardTemp;
+export default PromoCard;
