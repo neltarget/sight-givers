@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { Download, Printer, Calendar, Eye, Share2 } from "lucide-react";
 import logo from "../../assets/images/sight-givers.png";
 
-const VoucherDisplay = ({ voucherCode, userName }) => {
+const VoucherDisplay = ({ voucherCode, userName, promo }) => {
   const voucherRef = useRef();
 
   const handlePrint = () => {
@@ -159,7 +159,7 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
               <p style="color: #6b7280; margin: 0; font-size: 12px;">VOUCHER CODE</p>
               <div class="voucher-code">${voucherCode}</div>
               <div class="valid-date">
-                Valid: November 15th - 30th, 2025
+                Valid: ${promo.voucher.validity}
               </div>
             </div>
             
@@ -167,17 +167,17 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
               <div class="benefit-box">
                 <h3>What You Get:</h3>
                 <ul>
-                  <li>FREE Eye Screening</li>
-                  <li>30% OFF Glasses & Frames</li>
-                  <li>Free Cleaning Spray</li>
+                  ${promo.voucher.benefits
+                    .map((benefit) => `<li>${benefit}</li>`)
+                    .join("")}
                 </ul>
               </div>
               <div class="benefit-box">
                 <h3>How to Use:</h3>
                 <ul>
-                  <li>Present this voucher</li>
-                  <li>Walk in to our Eye Clinic</li>
-                  <li>Show review for gift</li>
+                  ${promo.voucher.instructions
+                    .map((instruction) => `<li>${instruction}</li>`)
+                    .join("")}
                 </ul>
               </div>
             </div>
@@ -185,9 +185,9 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
             <div class="instructions">
               <h4>Important Notes:</h4>
               <ul>
-                <li>Present voucher at reception</li>
-                <li>Cannot be combined with other offers</li>
-                <li>Show review for free cleaning spray</li>
+                ${promo.voucher.terms
+                  .map((term) => `<li>${term}</li>`)
+                  .join("")}
               </ul>
             </div>
           </div>
@@ -215,11 +215,15 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
   };
 
   const handleShare = async () => {
+    const shareText = `Get ${promo.voucher.benefits.join(
+      ", "
+    )} with voucher code: ${voucherCode}`;
+
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Sight Givers Black Friday Voucher",
-          text: `Get FREE eye screening + 30% OFF glasses & frames with voucher code: ${voucherCode}`,
+          title: `Sight Givers ${promo.hero.title}`,
+          text: shareText,
           url: window.location.href,
         });
       } catch (error) {
@@ -227,10 +231,15 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
       }
     } else {
       try {
-        await navigator.clipboard.writeText(voucherCode);
-        alert("Voucher code copied to clipboard!");
+        await navigator.clipboard.writeText(
+          `${shareText}\nVoucher Code: ${voucherCode}`
+        );
+        alert("Voucher details copied to clipboard!");
       } catch (error) {
-        prompt("Copy your voucher code:", voucherCode);
+        prompt(
+          "Copy your voucher details:",
+          `${shareText}\nVoucher Code: ${voucherCode}`
+        );
       }
     }
   };
@@ -293,7 +302,7 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
             <div className="flex items-center justify-center gap-1 xs:gap-2 text-green-600 mb-2">
               <Calendar className="h-3 w-3 xs:h-4 xs:w-4" />
               <span className="font-semibold text-sm xs:text-base sm:text-lg">
-                Valid: November 15th - 30th, 2025
+                Valid: {promo.voucher.validity}
               </span>
             </div>
           </div>
@@ -305,9 +314,9 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
                 What You Get:
               </h4>
               <ul className="text-xs xs:text-sm sm:text-base text-gray-600 space-y-1">
-                <li>• FREE Comprehensive Eye Screening</li>
-                <li>• 30% OFF All Glasses & Frames</li>
-                <li>• Free Cleaning Spray with Review</li>
+                {promo.voucher.benefits.map((benefit, index) => (
+                  <li key={index}>• {benefit}</li>
+                ))}
               </ul>
             </div>
 
@@ -316,9 +325,9 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
                 How to Use:
               </h4>
               <ul className="text-xs xs:text-sm sm:text-base text-gray-600 space-y-1">
-                <li>• Present this voucher at reception</li>
-                <li>• Walk in to our Eye Clinic</li>
-                <li>• Show review for bonus gift</li>
+                {promo.voucher.instructions.map((instruction, index) => (
+                  <li key={index}>• {instruction}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -359,10 +368,9 @@ const VoucherDisplay = ({ voucherCode, userName }) => {
           Important Notes:
         </h4>
         <ul className="text-xs xs:text-sm sm:text-base text-yellow-700 space-y-1">
-          <li>• Voucher must be presented at time of service</li>
-          <li>• Cannot be combined with other offers</li>
-          <li>• Show your review receipt for free cleaning spray</li>
-          <li>• Clinic hours: Mon-Fri 8AM-5PM, Sat 9AM-5PM</li>
+          {promo.voucher.terms.map((term, index) => (
+            <li key={index}>• {term}</li>
+          ))}
         </ul>
       </div>
     </section>

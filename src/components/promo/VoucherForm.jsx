@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Facebook, MapPin, Loader } from "lucide-react";
 
-const VoucherForm = ({ onVoucherGenerate }) => {
+const VoucherForm = ({ onVoucherGenerate, promo, isExpired }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -34,7 +34,8 @@ const VoucherForm = ({ onVoucherGenerate }) => {
 
   const generateVoucherCode = () => {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    return `SG-NOV-${randomNum}`;
+    // Use the promo-specific prefix from the promo data
+    return `${promo.voucher.prefix}-${randomNum}`;
   };
 
   const validateForm = () => {
@@ -50,7 +51,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
     if (!formData.location.trim()) {
       return "Please enter your location";
     }
-    if (!formData.followedFacebook) {
+    if (promo.form.requiresFacebook && !formData.followedFacebook) {
       return "Please confirm that you have followed us on Facebook";
     }
 
@@ -64,6 +65,14 @@ const VoucherForm = ({ onVoucherGenerate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Don't submit if expired
+    if (isExpired) {
+      setSubmitError(
+        "This promotion has ended. Please check our current promotions for active offers."
+      );
+      return;
+    }
 
     const validationError = validateForm();
     if (validationError) {
@@ -86,6 +95,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
         voucherCode: voucherCode,
         timestamp: timestamp,
         redeemed: "FALSE",
+        promotion: promo.id, // Track which promo this voucher is for
       };
 
       const SCRIPT_URL =
@@ -141,15 +151,20 @@ const VoucherForm = ({ onVoucherGenerate }) => {
 
   return (
     <section className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-4 xs:p-5 sm:p-6 lg:p-8 max-w-4xl mx-auto">
-      <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 xs:mb-5 sm:mb-6 text-center">
-        Claim Your Voucher
-      </h2>
+      <div className="text-center mb-4 xs:mb-5 sm:mb-6">
+        <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 xs:mb-5 sm:mb-6 text-center">
+          {isExpired ? "This Offer Has Expired" : "Claim Your Voucher"}
+        </h2>
 
-      {submitError && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-          <p className="text-red-700 text-sm">{submitError}</p>
-        </div>
-      )}
+        {isExpired && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <p className="text-yellow-700">
+              This promotion has ended. Please check our current promotions for
+              active offers.
+            </p>
+          </div>
+        )}
+      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -172,7 +187,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               placeholder="Enter your full name as on ID card"
-              disabled={isSubmitting}
+              disabled={isExpired || isSubmitting}
             />
           </div>
 
@@ -192,7 +207,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               placeholder="Enter your phone number"
-              disabled={isSubmitting}
+              disabled={isExpired || isSubmitting}
             />
           </div>
 
@@ -212,7 +227,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
               onChange={handleChange}
               className="w-full px-3 xs:px-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               placeholder="Enter your email address"
-              disabled={isSubmitting}
+              disabled={isExpired || isSubmitting}
             />
           </div>
 
@@ -234,7 +249,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
                 onChange={handleChange}
                 className="w-full pl-10 xs:pl-12 pr-3 xs:pr-4 py-2 xs:py-3 text-sm xs:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 placeholder="Enter your city or area"
-                disabled={isSubmitting}
+                disabled={isExpired || isSubmitting}
               />
             </div>
             <p className="text-xs xs:text-sm text-gray-500 mt-1 xs:mt-2">
@@ -243,62 +258,69 @@ const VoucherForm = ({ onVoucherGenerate }) => {
           </div>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 xs:p-4 sm:p-5">
-          <div className="flex items-start gap-2 xs:gap-3 sm:gap-4">
-            <Facebook className="h-5 w-5 xs:h-6 xs:w-6 sm:h-7 sm:w-7 text-blue-600 mt-0.5 xs:mt-1 flex-shrink-0" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 mb-1 xs:mb-2 text-sm xs:text-base sm:text-lg">
-                Stay Connected for Future Deals!
-              </h3>
-              <p className="text-gray-600 text-xs xs:text-sm sm:text-base mb-2 xs:mb-3 sm:mb-4 leading-relaxed">
-                Follow us on Facebook to claim your voucher and be the first to
-                hear about exclusive promotions and eye care tips.
-              </p>
-              <button
-                type="button"
-                onClick={handleFacebookLinkClick}
-                className="inline-flex items-center gap-1 xs:gap-2 bg-blue-600 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg hover:bg-blue-700 transition text-xs xs:text-sm mb-2 xs:mb-3"
-              >
-                <Facebook className="h-3 w-3 xs:h-4 xs:w-4" />
-                Follow Us on Facebook
-              </button>
-              <div className="flex items-center gap-2 xs:gap-3">
-                <input
-                  type="checkbox"
-                  id="followedFacebook"
-                  name="followedFacebook"
-                  checked={formData.followedFacebook}
-                  onChange={handleChange}
-                  disabled={!facebookLinkClicked || isSubmitting}
-                  className="w-4 h-4 xs:w-5 xs:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
-                />
-                <label
-                  htmlFor="followedFacebook"
-                  className={`text-xs xs:text-sm sm:text-base ${
-                    !facebookLinkClicked ? "text-gray-400" : "text-gray-700"
-                  }`}
-                >
-                  {facebookLinkClicked
-                    ? "I have followed Sight Givers on Facebook"
-                    : "Click the Facebook link above to enable this checkbox"}
-                </label>
-              </div>
-              {facebookLinkClicked && (
-                <p className="text-green-600 text-xs mt-2">
-                  ✓ Facebook link opened! Please follow our page and then check
-                  the box above.
+        {promo.form.requiresFacebook && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 xs:p-4 sm:p-5">
+            <div className="flex items-start gap-2 xs:gap-3 sm:gap-4">
+              <Facebook className="h-5 w-5 xs:h-6 xs:w-6 sm:h-7 sm:w-7 text-blue-600 mt-0.5 xs:mt-1 flex-shrink-0" />
+              <div className="flex-1">
+                <h3 className="font-semibold text-gray-900 mb-1 xs:mb-2 text-sm xs:text-base sm:text-lg">
+                  Stay Connected for Future Deals!
+                </h3>
+                <p className="text-gray-600 text-xs xs:text-sm sm:text-base mb-2 xs:mb-3 sm:mb-4 leading-relaxed">
+                  Follow us on Facebook to claim your voucher and be the first
+                  to hear about exclusive promotions and eye care tips.
                 </p>
-              )}
+                <button
+                  type="button"
+                  onClick={handleFacebookLinkClick}
+                  disabled={isExpired}
+                  className="inline-flex items-center gap-1 xs:gap-2 bg-blue-600 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg hover:bg-blue-700 transition text-xs xs:text-sm mb-2 xs:mb-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Facebook className="h-3 w-3 xs:h-4 xs:w-4" />
+                  Follow Us on Facebook
+                </button>
+                <div className="flex items-center gap-2 xs:gap-3">
+                  <input
+                    type="checkbox"
+                    id="followedFacebook"
+                    name="followedFacebook"
+                    checked={formData.followedFacebook}
+                    onChange={handleChange}
+                    disabled={!facebookLinkClicked || isExpired || isSubmitting}
+                    className="w-4 h-4 xs:w-5 xs:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                  <label
+                    htmlFor="followedFacebook"
+                    className={`text-xs xs:text-sm sm:text-base ${
+                      !facebookLinkClicked || isExpired
+                        ? "text-gray-400"
+                        : "text-gray-700"
+                    }`}
+                  >
+                    {facebookLinkClicked
+                      ? "I have followed Sight Givers on Facebook"
+                      : "Click the Facebook link above to enable this checkbox"}
+                  </label>
+                </div>
+                {facebookLinkClicked && (
+                  <p className="text-green-600 text-xs mt-2">
+                    ✓ Facebook link opened! Please follow our page and then
+                    check the box above.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isExpired || isSubmitting}
           className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 xs:py-4 px-6 rounded-lg font-semibold text-base xs:text-lg sm:text-xl hover:from-blue-700 hover:to-cyan-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          {isSubmitting ? (
+          {isExpired ? (
+            "Offer Expired"
+          ) : isSubmitting ? (
             <>
               <Loader className="h-5 w-5 animate-spin" />
               Generating Voucher...
@@ -310,7 +332,7 @@ const VoucherForm = ({ onVoucherGenerate }) => {
 
         <p className="text-xs xs:text-sm text-gray-500 text-center">
           By claiming this voucher, you agree to our terms and conditions.
-          Voucher valid from November 15th to 30th, 2025.
+          Voucher valid {promo.voucher.validity}.
         </p>
       </form>
     </section>
