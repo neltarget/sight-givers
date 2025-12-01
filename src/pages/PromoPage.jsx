@@ -1,22 +1,15 @@
 // src/pages/PromoPage.jsx
 import React, { useState, useEffect } from "react";
 import { promotions } from "../data/promotions";
-import {
-  sortPromotions,
-  groupPromotions,
-  getStatusBadge,
-} from "../utils/promoUtils";
+import { sortPromotions, groupPromotions, getStatusBadge } from "../utils/promoUtils";
 import PromoCard from "../components/promo/PromoCard";
 import PromoDetailPage from "../components/promo/PromoDetailPage";
 
 const PromoPage = () => {
   const [allPromotions, setAllPromotions] = useState([]);
-  const [groupedPromotions, setGroupedPromotions] = useState({
-    running: [],
-    expired: [],
-  });
+  const [groupedPromotions, setGroupedPromotions] = useState({ running: [], expired: [] });
   const [selectedPromo, setSelectedPromo] = useState(null);
-  const [view, setView] = useState("list"); // 'list' or 'detail'
+  const [view, setView] = useState('list'); // 'list' or 'detail'
 
   // Initialize and sort promotions
   useEffect(() => {
@@ -27,16 +20,21 @@ const PromoPage = () => {
 
   const handlePromoSelect = (promo) => {
     setSelectedPromo(promo);
-    setView("detail");
+    setView('detail');
   };
 
   const handleBackToList = () => {
     setSelectedPromo(null);
-    setView("list");
+    setView('list');
   };
 
-  if (view === "detail" && selectedPromo) {
-    return <PromoDetailPage promo={selectedPromo} onBack={handleBackToList} />;
+  if (view === 'detail' && selectedPromo) {
+    return (
+      <PromoDetailPage 
+        promo={selectedPromo} 
+        onBack={handleBackToList}
+      />
+    );
   }
 
   return (
@@ -61,10 +59,10 @@ const PromoPage = () => {
                 Current Promotions
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8">
-                {groupedPromotions.running.map((promo) => (
-                  <PromoCard
-                    key={promo.id}
-                    promo={promo}
+                {groupedPromotions.running.map(promo => (
+                  <PromoCard 
+                    key={promo.id} 
+                    promo={promo} 
                     onSelect={handlePromoSelect}
                   />
                 ))}
@@ -80,10 +78,10 @@ const PromoPage = () => {
                 Past Promotions
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8">
-                {groupedPromotions.expired.map((promo) => (
-                  <PromoCard
-                    key={promo.id}
-                    promo={promo}
+                {groupedPromotions.expired.map(promo => (
+                  <PromoCard 
+                    key={promo.id} 
+                    promo={promo} 
                     onSelect={handlePromoSelect}
                   />
                 ))}
