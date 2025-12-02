@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Import promo image and all glass images
-import promoImage from "../../assets/images/promo-image.jpg";
+// Import all glass images (keep these hardcoded)
 import glass1 from "../../assets/images/glass1.jpg";
 import glass2 from "../../assets/images/glass2.jpg";
 import glass3 from "../../assets/images/glass3.jpg";
@@ -25,10 +24,10 @@ import glass18 from "../../assets/images/glass18.jpg";
 import glass19 from "../../assets/images/glass19.jpg";
 import glass20 from "../../assets/images/glass20.jpg";
 
-const PromoVisual = () => {
+const PromoVisual = ({ mainGraphic, promoText }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // All 20 glass/frame images
+  // All 20 glass/frame images (keep this hardcoded)
   const carouselItems = [
     { image: glass1, alt: "Modern Frame Design" },
     { image: glass2, alt: "Classic Eyewear" },
@@ -76,26 +75,34 @@ const PromoVisual = () => {
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8">
-            {/* Left Column - Promo Image (780x1040 = 3:4 aspect ratio) */}
+            {/* Left Column - Dynamic Promo Image */}
             <div className="p-6 xs:p-8 bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
               <div className="text-center w-full max-w-sm">
                 <div className="bg-white rounded-lg xs:rounded-xl p-4 xs:p-6 shadow-md">
                   {/* Container with 3:4 aspect ratio matching 780x1040 */}
                   <div className="aspect-[3/4] rounded-lg overflow-hidden">
-                    <img
-                      src={promoImage}
-                      alt="Black Friday Special Offer - 30% OFF All Glasses & Frames"
-                      className="w-full h-full object-cover"
-                    />
+                    {mainGraphic ? (
+                      <img
+                        src={mainGraphic}
+                        alt="Special Promotional Offer"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span className="text-gray-500 text-sm">
+                          Promotional Image
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <p className="text-gray-600 text-sm xs:text-base mt-4">
-                  Special Black Friday Offer - Limited Time Only
+                  {promoText || "Special Offer - Limited Time Only"}
                 </p>
               </div>
             </div>
 
-            {/* Right Column - Carousel */}
+            {/* Right Column - Hardcoded Glasses Carousel */}
             <div className="p-6 xs:p-8 bg-gray-50 flex items-center justify-center">
               <div className="w-full max-w-md">
                 <div className="text-center mb-4 xs:mb-6">

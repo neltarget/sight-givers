@@ -90,7 +90,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2 text-xs font-bold whitespace-nowrap">
                 <Sparkles size={12} className="text-blue-700" />
                 <span className="truncate">
-                  FREE EYE SCREENING + 30% OFF FRAMES & LENSES!
+                  FREE EYE SCREENING + 20% OFF FRAMES & LENSES!
                 </span>
                 <Tag size={12} className="text-blue-700" />
               </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
           >
             <div className="flex items-center justify-center gap-1 text-xs font-bold whitespace-nowrap">
               <Sparkles size={10} className="text-blue-700" />
-              <span className="truncate text-xs">FREE SCREENING + 30% OFF</span>
+              <span className="truncate text-xs">FREE SCREENING + 20% OFF</span>
               <Tag size={10} className="text-blue-700" />
             </div>
           </Link>

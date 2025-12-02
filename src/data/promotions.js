@@ -1,6 +1,6 @@
 // src/data/promotions.js
 import promoImage from "../assets/images/promo-image.jpg";
-import christmasPromoImage from "../assets/images/christmas-promo-image.jpg"; // You'll need to add this
+import christmasPromoImage from "../assets/images/christmas-promo-image.jpg"; 
 import glass1 from "../assets/images/glass1.jpg";
 import glass2 from "../assets/images/glass2.jpg";
 import glass3 from "../assets/images/glass3.jpg";
@@ -165,8 +165,8 @@ export const promotions = [
     startDate: new Date("2025-12-01T00:00:00"),
     endDate: new Date("2025-12-31T23:59:59"),
 
-    // Visual Assets - Using same images for now
-    mainGraphic: promoImage, // Replace with actual Christmas image
+    // Visual Assets
+    mainGraphic: christmasPromoImage,
     carouselImages: [
       glass1,
       glass2,
@@ -208,7 +208,7 @@ export const promotions = [
         },
         {
           icon: "Percent",
-          value: "25% OFF",
+          value: "20% OFF",
           description: "Premium Frames Collection",
           color: "red",
         },
@@ -250,7 +250,7 @@ export const promotions = [
       prefix: "SG-DEC",
       benefits: [
         "FREE Complete Eye Examination",
-        "25% OFF Premium Frames Collection",
+        "20% OFF Premium Frames Collection",
         "Free Lens Cleaner & Christmas Case",
       ],
       instructions: [
@@ -270,7 +270,7 @@ export const promotions = [
     // Countdown Timer
     countdown: {
       message: "🎄 Christmas Special - Limited Time!",
-      urgencyText: "⭐ FREE eye exam + 25% OFF premium frames!",
+      urgencyText: "⭐ FREE eye exam + 20% OFF premium frames & lenses!",
       progressBar: {
         color: "from-green-400 to-red-500",
       },
