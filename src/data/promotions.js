@@ -1,6 +1,6 @@
 // src/data/promotions.js
 import promoImage from "../assets/images/promo-image.jpg";
-import christmasPromoImage from "../assets/images/christmas-promo-image.jpg"; 
+import christmasPromoImage from "../assets/images/christmas-promo-image.png"; 
 import glass1 from "../assets/images/glass1.jpg";
 import glass2 from "../assets/images/glass2.jpg";
 import glass3 from "../assets/images/glass3.jpg";

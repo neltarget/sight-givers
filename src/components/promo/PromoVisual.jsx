@@ -80,12 +80,12 @@ const PromoVisual = ({ mainGraphic, promoText }) => {
               <div className="text-center w-full max-w-sm">
                 <div className="bg-white rounded-lg xs:rounded-xl p-4 xs:p-6 shadow-md">
                   {/* Container with 3:4 aspect ratio matching 780x1040 */}
-                  <div className="aspect-[3/4] rounded-lg overflow-hidden">
+                  <div className="aspect-[3/4] rounded-lg overflow-hidden flex items-center justify-center bg-gray-100">
                     {mainGraphic ? (
                       <img
                         src={mainGraphic}
                         alt="Special Promotional Offer"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
