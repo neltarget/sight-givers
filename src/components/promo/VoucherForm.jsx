@@ -26,10 +26,7 @@ const VoucherForm = ({ onVoucherGenerate, promo, isExpired }) => {
   const handleFacebookLinkClick = () => {
     setFacebookLinkClicked(true);
     // Open in new tab
-    window.open(
-      "https://www.facebook.com/profile.php?id=100082925554469",
-      "_blank"
-    );
+    window.open("https://facebook.com/sightgiverseyeclinic", "_blank");
   };
 
   const generateVoucherCode = () => {

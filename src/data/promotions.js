@@ -148,7 +148,7 @@ export const promotions = [
 
     // Form Configuration
     form: {
-      facebookUrl: "https://www.facebook.com/profile.php?id=100082925554469",
+      facebookUrl: "https://facebook.com/sightgiverseyeclinic",
       requiresFacebook: true,
       googleScriptUrl:
         "https://script.google.com/macros/s/AKfycbzK4b0GJVfXHOUyshkOsxMcd4dfq2JdqG7rQVGQlWgMt7iUlb6412MW3eFRsfNziMA/exec",
@@ -278,7 +278,7 @@ export const promotions = [
 
     // Form Configuration
     form: {
-      facebookUrl: "https://www.facebook.com/profile.php?id=100082925554469",
+      facebookUrl: "https://facebook.com/sightgiverseyeclinic",
       requiresFacebook: true,
       googleScriptUrl:
         "https://script.google.com/macros/s/AKfycbzK4b0GJVfXHOUyshkOsxMcd4dfq2JdqG7rQVGQlWgMt7iUlb6412MW3eFRsfNziMA/exec",

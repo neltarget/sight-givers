@@ -101,7 +101,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <div className="flex gap-2 items-center">
               <a
-                href="https://www.facebook.com/profile.php?id=100082925554469"
+                href="https://facebook.com/sightgiverseyeclinic"
                 className="hover:text-gray-300"
               >
                 <Facebook size={16} />
@@ -228,7 +228,7 @@ export default function Navbar() {
           {/* Social Media Links */}
           <div className="flex gap-3 justify-center mb-2">
             <a
-              href="https://www.facebook.com/profile.php?id=100082925554469"
+              href="https://facebook.com/sightgiverseyeclinic"
               className="text-blue-600 hover:text-blue-800"
             >
               <Facebook size={18} />
