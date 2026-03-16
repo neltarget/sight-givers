@@ -17,7 +17,7 @@ import logo from "../assets/images/sight-givers.png";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(null); // Track which submenu is open
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -56,6 +56,8 @@ export default function Navbar() {
     { name: "Patient Resources", path: "/patient-resources" },
     { name: "🎁Promotions", path: "/promos" },
     { name: "Eye Health Videos", path: "/eye-health-videos" },
+    // NEW: Careers link added here
+    { name: "Careers", path: "/careers" },
   ];
 
   return (
@@ -64,10 +66,11 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      {/* Top bar with Promo Marquee - Optimized layout */}
+      {/* Top bar with Promo Marquee - unchanged */}
       <div className="bg-blue-600 text-white text-sm py-1 px-4 lg:px-6 hidden md:flex">
+        {/* ... (keep existing top bar code) ... */}
         <div className="w-full flex items-center justify-between gap-4">
-          {/* Contact Info - Left */}
+          {/* Contact Info */}
           <div className="flex-shrink-0">
             <div className="flex items-center gap-3 text-xs">
               <div className="flex items-center gap-1 whitespace-nowrap">
@@ -81,7 +84,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Promo Marquee - Center*/}
+          {/* Promo Marquee */}
           <div className="flex-1 min-w-0 flex justify-center">
             <Link
               to="/promos"
@@ -97,7 +100,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Social Media - Right - Compact */}
+          {/* Social Media */}
           <div className="flex-shrink-0">
             <div className="flex gap-2 items-center">
               <a
@@ -117,10 +120,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Alternative Top Bar Layout for Smaller Screens */}
+      {/* Alternative Top Bar Layout for Smaller Screens - unchanged */}
       <div className="bg-blue-600 text-white text-sm py-1 px-3 md:hidden">
+        {/* ... keep existing mobile top bar ... */}
         <div className="flex flex-col gap-1">
-          {/* Contact Info - More compact for mobile */}
           <div className="flex justify-between items-center text-xs">
             <div className="flex items-center gap-1 whitespace-nowrap">
               <Phone size={10} />
@@ -136,7 +139,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Promo Banner for Mobile */}
           <Link
             to="/promos"
             className="bg-gradient-to-r from-yellow-400 to-orange-400 text-blue-900 px-2 py-1 rounded-full text-center hover:from-yellow-300 hover:to-orange-300 transition-all duration-300"
@@ -203,7 +205,7 @@ export default function Navbar() {
               >
                 {link.name}
               </NavLink>
-            )
+            ),
           )}
           <Link
             to="/booking"
@@ -225,7 +227,6 @@ export default function Navbar() {
       {/* Mobile Nav Dropdown */}
       {isOpen && (
         <nav className="md:hidden bg-white shadow-md px-4 py-4 space-y-3">
-          {/* Social Media Links */}
           <div className="flex gap-3 justify-center mb-2">
             <a
               href="https://facebook.com/sightgiverseyeclinic"
@@ -292,7 +293,7 @@ export default function Navbar() {
               >
                 {link.name}
               </NavLink>
-            )
+            ),
           )}
 
           <Link

@@ -38,14 +38,16 @@ import PromoPage from "./pages/PromoPage";
 
 // eye health videos
 import { EyeHealthVideos } from "./pages/EyeHealthVideos";
+
+// careers pages
+import CareersPage from "./pages/career-pages/CareersPage";
+import ApplicationThankYou from "./pages/career-pages/ApplicationThankYou";
+
 export default function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gray-50">
-        {/* Navbar */}
         <Navbar />
-
-        {/* Main content */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -59,8 +61,7 @@ export default function App() {
 
             {/* About page with nested routes */}
             <Route path="/about" element={<About />}>
-              <Route index element={<ClinicHistory />} />{" "}
-              {/* Default sub-page */}
+              <Route index element={<ClinicHistory />} />
               <Route path="clinic-history" element={<ClinicHistory />} />
               <Route path="mission-vision" element={<MissionVision />} />
               <Route path="meet-the-team" element={<MeetTheTeam />} />
@@ -72,22 +73,16 @@ export default function App() {
 
             {/* Services Subpages */}
             <Route path="/services" element={<Services />}>
-              <Route index element={<EyeExams />} />{" "}
-              <Route path="/services/eye-exams" element={<EyeExams />} />
-              <Route
-                path="/services/glasses-contacts"
-                element={<GlassesContacts />}
-              />
-              <Route
-                path="/services/cataract-glaucoma"
-                element={<CataractGlaucoma />}
-              />
-              <Route path="/services/door-to-door" element={<DoorToDoor />} />
+              <Route index element={<EyeExams />} />
+              <Route path="eye-exams" element={<EyeExams />} />
+              <Route path="glasses-contacts" element={<GlassesContacts />} />
+              <Route path="cataract-glaucoma" element={<CataractGlaucoma />} />
+              <Route path="door-to-door" element={<DoorToDoor />} />
             </Route>
 
-            {/* Patient Resources subpages  */}
+            {/* Patient Resources subpages */}
             <Route path="/patient-resources" element={<PatientResources />}>
-              <Route index element={<FirstVisit />} /> {/* Default page */}
+              <Route index element={<FirstVisit />} />
               <Route path="first-visit" element={<FirstVisit />} />
               <Route path="insurance-payment" element={<InsurancePayment />} />
               <Route
@@ -102,16 +97,19 @@ export default function App() {
 
             {/* eye health videos */}
             <Route path="/eye-health-videos" element={<EyeHealthVideos />} />
-            
+
+            {/* NEW: Careers routes */}
+            <Route path="/careers" element={<CareersPage />} />
+            <Route
+              path="/careers/thank-you"
+              element={<ApplicationThankYou />}
+            />
+
             {/* Catch-all for 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-
-        {/* Footer */}
         <Footer />
-
-        {/* Floating WhatsApp Chat */}
         <WhatsAppChat />
       </div>
     </Router>
