@@ -108,7 +108,7 @@ export default function WhatsAppChat() {
 
       {/* Enhanced WhatsApp Button with multiple animations */}
       <a
-        href="https://wa.me/233240553897"
+        href="https://wa.me/233596102159"
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsAppClick}

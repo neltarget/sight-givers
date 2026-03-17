@@ -75,7 +75,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3 text-xs">
               <div className="flex items-center gap-1 whitespace-nowrap">
                 <Phone size={14} />
-                <a href="tel:+233240553897">+233 240 553 897</a>
+                <a href="tel:+233596102159">+233 59 610 2159</a>
               </div>
               <div className="flex items-center gap-1 whitespace-nowrap">
                 <Mail size={14} />
@@ -127,8 +127,8 @@ export default function Navbar() {
           <div className="flex justify-between items-center text-xs">
             <div className="flex items-center gap-1 whitespace-nowrap">
               <Phone size={10} />
-              <a href="tel:+233240553897" className="text-xs">
-                +233 240 553 897
+              <a href="tel:+233596102159" className="text-xs">
+                +233 59 610 2159
               </a>
             </div>
             <div className="flex items-center gap-1 whitespace-nowrap">

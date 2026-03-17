@@ -16,7 +16,7 @@ const slides = [
     ctas: (
       <div className="flex flex-col md:flex-row gap-4 justify-center">
         <a
-          href="tel:+233240553897"
+          href="tel:+233596102159"
           className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold shadow-md transition"
         >
           <Phone size={18} />

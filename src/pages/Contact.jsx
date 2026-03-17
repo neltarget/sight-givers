@@ -44,10 +44,10 @@ export default function Contact() {
               <span>
                 Phone:{" "}
                 <a
-                  href="tel:+233240553897"
+                  href="tel:+233596102159"
                   className="text-blue-600 font-medium hover:underline"
                 >
-                  +233 24 055 3897
+                  +233 59 610 2159
                 </a>
               </span>
             </div>
@@ -57,7 +57,7 @@ export default function Contact() {
               <span>
                 WhatsApp:{" "}
                 <a
-                  href="https://wa.me/233240553897"
+                  href="https://wa.me/233596102159"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-green-600 font-medium hover:underline"
