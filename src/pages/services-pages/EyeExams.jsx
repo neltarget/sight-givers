@@ -1,3 +1,4 @@
+import eyeExamsImage from "../../assets/images/eye-exams.jpg";
 export default function EyeExams() {
   return (
     <section className="p-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
@@ -20,7 +21,7 @@ export default function EyeExams() {
       {/* Image */}
       <div>
         <img
-          src="https://via.placeholder.com/600x400"
+          src={eyeExamsImage}
           alt="Eye exams"
           className="rounded-xl shadow-md w-full object-cover"
         />

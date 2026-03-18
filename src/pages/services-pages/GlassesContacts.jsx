@@ -1,10 +1,11 @@
+import glassesContact from "../../assets/images/glasses-contacts.jpg";
 export default function GlassesContacts() {
   return (
     <section className="p-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
       {/* Image */}
       <div>
         <img
-          src="https://via.placeholder.com/600x400"
+          src={glassesContact}
           alt="Glasses and contact lenses"
           className="rounded-xl shadow-md w-full object-cover"
         />
