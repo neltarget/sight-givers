@@ -1,6 +1,6 @@
 import React from "react";
-import clinicImage1 from "../../assets/images/clinic1.jpg"; // replace with actual office image
-import clinicImage2 from "../../assets/images/clinic2.jpg"; // replace with actual office image
+import missionVisionImage from "../../assets/images/mission-vision.jpg";
+import coreValuesImage from "../../assets/images/core-values.jpg"; 
 
 export default function MissionVision() {
   return (
@@ -23,9 +23,9 @@ export default function MissionVision() {
               research.
             </p>
             <img
-              src={clinicImage1}
+              src={missionVisionImage}
               alt="Clinic Vision"
-              className="w-full h-64 md:h-80 rounded-lg object-cover shadow-lg"
+              className="w-full h-64 md:h-full rounded-lg object-cover shadow-lg"
             />
           </div>
 
@@ -40,9 +40,9 @@ export default function MissionVision() {
               save their sight from going blind.
             </p>
             <img
-              src={clinicImage2}
+              src={coreValuesImage}
               alt="Clinic Mission"
-              className="w-full h-64 md:h-80 rounded-lg object-cover shadow-lg"
+              className="w-full h-64 md:h-full rounded-lg object-cover shadow-lg"
             />
           </div>
         </div>
