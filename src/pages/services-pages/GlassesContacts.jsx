@@ -1,4 +1,4 @@
-import glassesContact from "../../assets/images/glasses-contacts.jpg";
+import glassesContact from "../../assets/images/glasses-contacts.png";
 export default function GlassesContacts() {
   return (
     <section className="p-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">

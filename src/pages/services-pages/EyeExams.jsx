@@ -1,4 +1,4 @@
-import eyeExamsImage from "../../assets/images/eye-exams.jpg";
+import eyeExamsImage from "../../assets/images/eye-exams.png";
 export default function EyeExams() {
   return (
     <section className="p-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
