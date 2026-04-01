@@ -24,6 +24,7 @@ import EyeExams from "./pages/services-pages/EyeExams";
 import GlassesContacts from "./pages/services-pages/GlassesContacts";
 import CataractGlaucoma from "./pages/services-pages/CataractGlaucoma";
 import DoorToDoor from "./pages/services-pages/DoorToDoor";
+import DvlaEyeTest from "./pages/services-pages/DvlaEyeTest";
 
 // Patient Resources subpages
 import PatientResources from "./pages/PatientResources";
@@ -75,6 +76,7 @@ export default function App() {
             <Route path="/services" element={<Services />}>
               <Route index element={<EyeExams />} />
               <Route path="eye-exams" element={<EyeExams />} />
+              <Route path="dvla-eye-test" element={<DvlaEyeTest />} />
               <Route path="glasses-contacts" element={<GlassesContacts />} />
               <Route path="cataract-glaucoma" element={<CataractGlaucoma />} />
               <Route path="door-to-door" element={<DoorToDoor />} />

@@ -41,6 +41,7 @@ export default function Navbar() {
       path: "/services",
       submenu: [
         { name: "Eye Exams", path: "/services/eye-exams" },
+        { name: "DVLA Eye Test", path: "/services/dvla-eye-test" },
         {
           name: "Glasses & Contact Lenses",
           path: "/services/glasses-contacts",

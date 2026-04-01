@@ -3,6 +3,7 @@ import { Outlet, NavLink } from "react-router-dom";
 export default function Services() {
   const serviceLinks = [
     { name: "Eye Exams", path: "eye-exams" },
+    { name: "DVLA Eye Test", path: "dvla-eye-test" },
     { name: "Glasses & Contact Lenses", path: "glasses-contacts" },
     { name: "Cataract Surgery & Glaucoma", path: "cataract-glaucoma" },
     { name: "Door to Door Services", path: "door-to-door" },
@@ -14,7 +15,6 @@ export default function Services() {
         Our Services
       </h1>
 
-      {/* Submenu */}
       <nav className="flex flex-wrap justify-center gap-4 mb-10">
         {serviceLinks.map((link) => (
           <NavLink
@@ -33,7 +33,6 @@ export default function Services() {
         ))}
       </nav>
 
-      {/* Display the selected service */}
       <Outlet />
     </section>
   );
