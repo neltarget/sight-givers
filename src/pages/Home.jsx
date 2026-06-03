@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import TrustFactors from "../components/TrustFactors";
+import InsuranceScroll from "../components/InsuranceScroll";
 import Testimonials from "../components/Testimonials";
 import Services from "./Services";
 import Shop from "./Shop";
@@ -11,6 +12,7 @@ export default function Home() {
     <section className="space-y-10">
       <Hero />
       <TrustFactors />
+      <InsuranceScroll />
       <AboutSummary />
       <ServiceSummary />
       <Testimonials />

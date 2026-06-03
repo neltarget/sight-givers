@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Eye,
   Glasses,
@@ -8,108 +9,118 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 
-const ServiceSummary = () => {
-  const services = [
-    {
-      icon: Eye,
-      title: "EYE EXAMS",
-      description: "Early detection of eye conditions and vision problems.",
-      color: "bg-blue-50 border-blue-200",
-      iconColor: "text-blue-600",
-      link: "/services/eye-exams",
-    },
-    {
-      icon: ClipboardCheck,
-      title: "DVLA EYE TEST",
-      description:
-        "Certified eye examination for DVLA requirements and driver’s license processing.",
-      color: "bg-red-50 border-red-200",
-      iconColor: "text-red-600",
-      link: "/services/dvla-eye-test",
-    },
-    {
-      icon: Glasses,
-      title: "GLASSES & CONTACT LENSES",
-      description: "A wide range of frames, lenses and fitting services",
-      color: "bg-green-50 border-green-200",
-      iconColor: "text-green-600",
-      link: "/services/glasses-contacts",
-    },
-    {
-      icon: Stethoscope,
-      title: "CATARACT SURGERY & GLAUCOMA",
-      description:
-        "Safe and effective cataract removal with premium lens options.",
-      color: "bg-purple-50 border-purple-200",
-      iconColor: "text-purple-600",
-      link: "/services/cataract-glaucoma",
-    },
-    {
-      icon: Home,
-      title: "DOOR TO DOOR SERVICES",
-      description:
-        "We provide door to door services to the disabled, people that due to distance cannot come to us.",
-      color: "bg-orange-50 border-orange-200",
-      iconColor: "text-orange-600",
-      link: "/services/door-to-door",
-    },
-  ];
+const services = [
+  {
+    icon: Eye,
+    title: "Eye Exams",
+    description:
+      "Early detection of eye conditions and vision problems with advanced diagnostics.",
+    accent: "bg-blue-600",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    link: "/services/eye-exams",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "DVLA Eye Test",
+    description:
+      "Certified eye examination for DVLA requirements and driver's license processing.",
+    accent: "bg-red-500",
+    iconBg: "bg-red-100",
+    iconColor: "text-red-600",
+    link: "/services/dvla-eye-test",
+  },
+  {
+    icon: Glasses,
+    title: "Glasses & Contact Lenses",
+    description:
+      "A wide range of frames, lenses, and professional fitting services.",
+    accent: "bg-emerald-500",
+    iconBg: "bg-emerald-100",
+    iconColor: "text-emerald-600",
+    link: "/services/glasses-contacts",
+  },
+  {
+    icon: Stethoscope,
+    title: "Cataract Surgery & Glaucoma",
+    description:
+      "Safe and effective cataract removal with premium lens options.",
+    accent: "bg-purple-600",
+    iconBg: "bg-purple-100",
+    iconColor: "text-purple-600",
+    link: "/services/cataract-glaucoma",
+  },
+  {
+    icon: Home,
+    title: "Door to Door Services",
+    description:
+      "We provide door to door services to the disabled and those who cannot travel to us.",
+    accent: "bg-orange-500",
+    iconBg: "bg-orange-100",
+    iconColor: "text-orange-600",
+    link: "/services/door-to-door",
+  },
+];
 
+const ServiceSummary = () => {
   return (
-    <section className="py-6 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 sm:py-20 bg-gray-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+        <div className="mb-12 text-center sm:mb-16">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-600">
+            What we offer
+          </p>
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
             Our Services
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">
+          <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500" />
+          <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
             Comprehensive eye care services designed to meet all your vision
             needs with compassion and expertise.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
           {services.map((service, index) => {
             const IconComponent = service.icon;
-
             return (
-              <div
+              <Link
                 key={index}
-                className={`group relative flex h-full flex-col rounded-xl border-2 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${service.color}`}
+                to={service.link}
+                className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-gray-200"
               >
-                {/* Icon */}
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border bg-white shadow-sm transition-shadow group-hover:shadow-md">
-                    <IconComponent className={`h-8 w-8 ${service.iconColor}`} />
+                {/* Top accent bar */}
+                <div className={`h-1 w-full ${service.accent}`} />
+
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  {/* Icon */}
+                  <div
+                    className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${service.iconBg} transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14`}
+                  >
+                    <IconComponent
+                      className={`h-6 w-6 ${service.iconColor} sm:h-7 sm:w-7`}
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mb-5 flex-1 text-sm leading-relaxed text-gray-500">
+                    {service.description}
+                  </p>
+
+                  {/* Read more */}
+                  <div className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 transition-colors duration-200 group-hover:text-blue-700">
+                    Read more
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
-
-                {/* Title */}
-                <h3 className="mb-3 text-center text-lg font-semibold leading-tight text-gray-900">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="flex-grow text-center text-sm leading-relaxed text-gray-600">
-                  {service.description}
-                </p>
-
-                {/* Link */}
-                <div className="mt-4 border-t border-gray-200 pt-4 text-center">
-                  <a
-                    href={service.link}
-                    className="group/link inline-flex items-center text-sm font-medium text-blue-600 transition-colors duration-300 hover:text-blue-800"
-                  >
-                    Read more
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                  </a>
-                </div>
-
-                {/* Hover line */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
-              </div>
+              </Link>
             );
           })}
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Phone, ChevronLeft, ChevronRight, MapPin, Award, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import hero1 from "../assets/images/hero1.png";
 import hero2 from "../assets/images/hero2.png";
@@ -83,13 +83,13 @@ const swipePower = (offset, velocity) => Math.abs(offset) * velocity;
 
 function CTAButton({ action }) {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white shadow-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-white/70";
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-white/70";
 
   const variants = {
     primary:
-      "bg-blue-600/95 hover:bg-blue-700 shadow-blue-900/30 hover:shadow-blue-900/40",
+      "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/40",
     success:
-      "bg-green-600/95 hover:bg-green-700 shadow-green-900/30 hover:shadow-green-900/40",
+      "border-2 border-white/70 text-white hover:bg-white/10",
   };
 
   const className = `${baseClasses} ${variants[action.variant] || variants.primary}`;
@@ -173,7 +173,7 @@ export default function HeroSlideshow() {
 
   return (
     <section
-      className="relative h-[70vh] w-full overflow-hidden"
+      className="relative min-h-[85vh] w-full overflow-hidden md:min-h-[90vh]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Hero slideshow"
@@ -198,9 +198,8 @@ export default function HeroSlideshow() {
             else if (swipe > swipeConfidenceThreshold) paginate(-1);
           }}
         >
-          <div className="absolute inset-0 bg-slate-950/7" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/12 via-transparent to-black/12" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/16 via-transparent to-black/6" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 
@@ -209,98 +208,106 @@ export default function HeroSlideshow() {
         <div className="absolute bottom-16 right-1/4 h-48 w-48 rounded-full bg-emerald-400/10 blur-3xl" />
       </div>
 
-      <div className="absolute inset-0 z-10 flex items-center justify-center px-4 md:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slide.id}
-            className="mx-4 w-full max-w-4xl rounded-3xl border border-white/20 bg-black/30 px-6 py-8 text-center text-white shadow-[0_20px_60px_rgba(0,0,0,0.30)] md:px-10 md:py-10"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+      <div className="absolute inset-0 z-10 flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
+          <AnimatePresence mode="wait">
             <motion.div
-              className="mb-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-medium tracking-wide text-white/95"
-              initial={{ opacity: 0, y: 8 }}
+              key={slide.id}
+              className="max-w-xl text-left"
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              {slide.badge}
+              <motion.div
+                className="mb-4 flex items-center gap-2 border-l-4 border-blue-400 pl-3"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                {slide.id === 1 && <MapPin size={14} className="text-blue-300" />}
+                {slide.id === 2 && <Award size={14} className="text-blue-300" />}
+                {slide.id === 3 && <ShieldCheck size={14} className="text-blue-300" />}
+                {slide.id === 4 && <MapPin size={14} className="text-blue-300" />}
+                <span className="text-xs font-semibold uppercase tracking-widest text-blue-300">
+                  {slide.badge}
+                </span>
+              </motion.div>
+
+              <motion.h1
+                className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)] md:text-6xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                {slide.title}
+              </motion.h1>
+
+              <motion.p
+                className="mb-8 max-w-lg text-lg leading-relaxed text-white/85 md:text-xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35, duration: 0.5 }}
+              >
+                {slide.text}
+              </motion.p>
+
+              <motion.div
+                className="flex flex-row items-center gap-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                {slide.actions.map((action, index) => (
+                  <CTAButton key={index} action={action} />
+                ))}
+              </motion.div>
             </motion.div>
-
-            <motion.h1
-              className="mb-4 text-3xl font-extrabold tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.60)] md:text-5xl"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-            >
-              {slide.title}
-            </motion.h1>
-
-            <motion.p
-              className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/92 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] md:text-xl"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.5 }}
-            >
-              {slide.text}
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col items-center justify-center gap-4 md:flex-row"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.5 }}
-            >
-              {slide.actions.map((action, index) => (
-                <CTAButton key={index} action={action} />
-              ))}
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
       </div>
 
       <motion.button
         onClick={() => paginate(-1)}
-        className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/15 p-3 text-white shadow-lg transition hover:bg-black/25 focus:outline-none focus:ring-2 focus:ring-white/70"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.94 }}
+        className="absolute left-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-3 text-slate-800 shadow-xl transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 md:left-8"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.92 }}
         aria-label="Previous slide"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft size={24} />
       </motion.button>
 
       <motion.button
         onClick={() => paginate(1)}
-        className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/15 p-3 text-white shadow-lg transition hover:bg-black/25 focus:outline-none focus:ring-2 focus:ring-white/70"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.94 }}
+        className="absolute right-5 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-3 text-slate-800 shadow-xl transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 md:right-8"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.92 }}
         aria-label="Next slide"
       >
-        <ChevronRight size={28} />
+        <ChevronRight size={24} />
       </motion.button>
 
-      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
+      <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
         {slides.map((item, index) => (
           <motion.button
             key={item.id}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className={`h-3 rounded-full transition-all duration-300 ${
+            className={`h-2.5 rounded-full transition-all duration-300 ${
               index === current
                 ? "w-8 bg-white shadow-md"
-                : "w-3 bg-white/55 hover:bg-white/85"
+                : "w-2.5 bg-white/40 hover:bg-white/70"
             }`}
             whileHover={{ scale: 1.12 }}
           />
         ))}
       </div>
 
-      <div className="absolute bottom-0 left-0 z-20 h-1 w-full bg-white/10">
+      <div className="absolute bottom-0 left-0 z-20 h-0.5 w-full bg-white/10">
         {!isPaused && (
           <motion.div
             key={current}
-            className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400"
+            className="h-full bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 5, ease: "linear" }}

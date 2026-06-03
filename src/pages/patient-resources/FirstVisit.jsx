@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FirstVisit() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto py-4 px-6">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">
         What to Expect on Your First Visit
       </h1>
