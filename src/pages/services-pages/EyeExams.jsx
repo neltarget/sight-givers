@@ -24,6 +24,7 @@ export default function EyeExams() {
           src={eyeExamsImage}
           alt="Eye exams"
           className="rounded-xl shadow-md w-full object-cover"
+          loading="lazy"
         />
       </div>
     </section>

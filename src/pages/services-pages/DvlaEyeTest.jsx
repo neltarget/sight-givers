@@ -22,6 +22,7 @@ export default function DvlaEyeTest() {
           src="https://via.placeholder.com/600x400"
           alt="DVLA eye test service"
           className="rounded-xl shadow-md w-full object-cover"
+          loading="lazy"
         />
       </div>
     </section>

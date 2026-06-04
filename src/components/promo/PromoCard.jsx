@@ -20,6 +20,7 @@ const PromoCard = ({ promo, onSelect }) => {
           src={promo.mainGraphic}
           alt={promo.hero.title}
           className="w-full h-48 object-cover"
+          loading="lazy"
         />
         <div className="absolute top-4 right-4">
           <span

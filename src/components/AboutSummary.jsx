@@ -10,6 +10,7 @@ export default function AboutSummary() {
           src={doctorImage}
           alt="Dr. Light"
           className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg"
+          loading="lazy"
         />
       </div>
 

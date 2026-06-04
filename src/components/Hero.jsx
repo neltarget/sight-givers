@@ -2,10 +2,10 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, ChevronLeft, ChevronRight, MapPin, Award, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import hero1 from "../assets/images/hero1.png";
-import hero2 from "../assets/images/hero2.png";
-import hero3 from "../assets/images/hero3.png";
-import hero4 from "../assets/images/hero4.png";
+import hero1 from "../assets/images/hero/hero1.webp";
+import hero2 from "../assets/images/hero/hero2.webp";
+import hero3 from "../assets/images/hero/hero3.webp";
+import hero4 from "../assets/images/hero/hero4.webp";
 
 const slides = [
   {
@@ -83,7 +83,7 @@ const swipePower = (offset, velocity) => Math.abs(offset) * velocity;
 
 function CTAButton({ action }) {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-white/70";
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-white/70 md:px-7 md:py-3.5 md:text-base";
 
   const variants = {
     primary:

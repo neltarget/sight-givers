@@ -26,6 +26,7 @@ export default function MissionVision() {
               src={missionVisionImage}
               alt="Clinic Vision"
               className="w-full h-64 md:h-full rounded-lg object-cover shadow-lg"
+              loading="lazy"
             />
           </div>
 
@@ -43,6 +44,7 @@ export default function MissionVision() {
               src={coreValuesImage}
               alt="Clinic Mission"
               className="w-full h-64 md:h-full rounded-lg object-cover shadow-lg"
+              loading="lazy"
             />
           </div>
         </div>

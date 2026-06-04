@@ -1,26 +1,26 @@
 // src/data/promotions.js
 import promoImage from "../assets/images/promo-image.jpg";
 import christmasPromoImage from "../assets/images/christmas-promo-image.png"; 
-import glass1 from "../assets/images/glass1.jpg";
-import glass2 from "../assets/images/glass2.jpg";
-import glass3 from "../assets/images/glass3.jpg";
-import glass4 from "../assets/images/glass4.jpg";
-import glass5 from "../assets/images/glass5.jpg";
-import glass6 from "../assets/images/glass6.jpg";
-import glass7 from "../assets/images/glass7.jpg";
-import glass8 from "../assets/images/glass8.jpg";
-import glass9 from "../assets/images/glass9.jpg";
-import glass10 from "../assets/images/glass10.jpg";
-import glass11 from "../assets/images/glass11.jpg";
-import glass12 from "../assets/images/glass12.jpg";
-import glass13 from "../assets/images/glass13.jpg";
-import glass14 from "../assets/images/glass14.jpg";
-import glass15 from "../assets/images/glass15.jpg";
-import glass16 from "../assets/images/glass16.jpg";
-import glass17 from "../assets/images/glass17.jpg";
-import glass18 from "../assets/images/glass18.jpg";
-import glass19 from "../assets/images/glass19.jpg";
-import glass20 from "../assets/images/glass20.jpg";
+import glass1 from "../assets/images/glasses/glass1.jpg";
+import glass2 from "../assets/images/glasses/glass2.jpg";
+import glass3 from "../assets/images/glasses/glass3.jpg";
+import glass4 from "../assets/images/glasses/glass4.jpg";
+import glass5 from "../assets/images/glasses/glass5.jpg";
+import glass6 from "../assets/images/glasses/glass6.jpg";
+import glass7 from "../assets/images/glasses/glass7.jpg";
+import glass8 from "../assets/images/glasses/glass8.jpg";
+import glass9 from "../assets/images/glasses/glass9.jpg";
+import glass10 from "../assets/images/glasses/glass10.jpg";
+import glass11 from "../assets/images/glasses/glass11.jpg";
+import glass12 from "../assets/images/glasses/glass12.jpg";
+import glass13 from "../assets/images/glasses/glass13.jpg";
+import glass14 from "../assets/images/glasses/glass14.jpg";
+import glass15 from "../assets/images/glasses/glass15.jpg";
+import glass16 from "../assets/images/glasses/glass16.jpg";
+import glass17 from "../assets/images/glasses/glass17.jpg";
+import glass18 from "../assets/images/glasses/glass18.jpg";
+import glass19 from "../assets/images/glasses/glass19.jpg";
+import glass20 from "../assets/images/glasses/glass20.jpg";
 
 export const promotions = [
   {

@@ -1,4 +1,4 @@
-import glassesContact from "../../assets/images/glasses-contacts.jpg";
+import glassesContact from "../../assets/images/glasses-contacts.webp";
 export default function GlassesContacts() {
   return (
     <section className="p-6 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
@@ -8,6 +8,7 @@ export default function GlassesContacts() {
           src={glassesContact}
           alt="Glasses and contact lenses"
           className="rounded-xl shadow-md w-full object-cover"
+          loading="lazy"
         />
       </div>
 

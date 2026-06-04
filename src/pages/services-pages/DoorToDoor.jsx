@@ -7,6 +7,7 @@ export default function DoorToDoor() {
           src="https://via.placeholder.com/600x400"
           alt="Door-to-door services"
           className="rounded-xl shadow-md w-full object-cover"
+          loading="lazy"
         />
       </div>
 

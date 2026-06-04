@@ -25,6 +25,7 @@ export default function CataractGlaucoma() {
           src="https://via.placeholder.com/600x400"
           alt="Cataract and glaucoma treatment"
           className="rounded-xl shadow-md w-full object-cover"
+          loading="lazy"
         />
       </div>
     </section>

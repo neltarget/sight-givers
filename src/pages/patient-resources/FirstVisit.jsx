@@ -10,6 +10,7 @@ export default function FirstVisit() {
         src="https://via.placeholder.com/800x400"
         alt="First Visit"
         className="rounded-lg shadow mb-6"
+        loading="lazy"
       />
       <p className="text-lg text-gray-700 leading-relaxed">
         During your first visit to Sight Givers Eye Clinic, our team will take a

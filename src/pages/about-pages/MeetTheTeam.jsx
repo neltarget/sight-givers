@@ -1,8 +1,8 @@
 import React from "react";
-import doctor1 from '../../assets/images/doctor1.png'
-import doctor2 from '../../assets/images/doctor2.png'
-import doctor3 from '../../assets/images/doctor3.png'
-// import doctor4 from '../../assets/images/doctor4.png'
+import doctor1 from '../../assets/images/doctors/doctor1.png'
+import doctor2 from '../../assets/images/doctors/doctor2.png'
+import doctor3 from '../../assets/images/doctors/doctor3.png'
+// import doctor4 from '../../assets/images/doctors/doctor4.png'
 // Placeholder team data
 const teamMembers = [
   {
@@ -44,6 +44,7 @@ export default function MeetTheTeam() {
                 src={member.image}
                 alt={member.name}
                 className="w-40 h-40 rounded-full object-cover mb-4"
+                loading="lazy"
               />
               <h2 className="text-xl font-semibold text-blue-600">
                 {member.name}

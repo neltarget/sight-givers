@@ -12,6 +12,7 @@ export default function ClinicHistory() {
             src={doctorImage}
             alt="Dr. Light - Sight Givers Eye Clinic"
             className="rounded-2xl shadow-lg w-80 h-80 object-cover mx-auto"
+            loading="lazy"
           />
 
           {/* Doctor Highlights */}
