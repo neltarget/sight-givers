@@ -9,36 +9,40 @@ export default function AboutSummary() {
         <img
           src={doctorImage}
           alt="Dr. Light"
-          className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg"
+          className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-xl ring-4 ring-blue-100"
           loading="lazy"
         />
       </div>
 
       {/* Text Content */}
-      <div className="text-center md:text-left space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      <div className="text-center md:text-left space-y-4">
+        <h2 className="text-2xl font-bold md:text-3xl text-gray-900">
           WELCOME MESSAGE FROM THE PRESIDENT & CEO
         </h2>
 
-        <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-          Welcome to <strong>Sight Givers Eye Clinic</strong>, your trusted eye
-          care center, committed to <strong>giving sight to save lives</strong>.
-          Our eyes are the light to our body, and without them, our body will be
-          full of darkness. For this reason, Sight Givers Eye Clinic is the
-          <strong> #1 eye clinic in the heart of Ghana</strong> with branches in
-          Ho, Volta Region, Accra, and still counting. We are dedicated to
-          <strong> eradicating blindness and enhancing your vision</strong>.
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+          Welcome to <strong>Sight Givers Eye Clinic</strong>, your trusted
+          eye care center, committed to{" "}
+          <strong>giving sight to save lives</strong>. Our eyes are the light
+          to our body, and without them, our body will be full of darkness.
+          For this reason, Sight Givers Eye Clinic is the{" "}
+          <strong>#1 eye clinic in the heart of Ghana</strong> with branches
+          in Ho, Volta Region, Accra, and still counting. We are dedicated
+          to <strong>eradicating blindness and enhancing your vision</strong>.
         </p>
 
-        <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed">
           Our knowledgeable staff are friendly and competent in all aspects of
           eye care. Our finest eye doctors are{" "}
-          <strong>American and Ghanaian trained</strong>, ready to serve you. We
-          have exotic and stylish designer frames that will make you{" "}
+          <strong>American and Ghanaian trained</strong>, ready to serve you.
+          We have exotic and stylish designer frames that will make you{" "}
           <strong>look good to feel good</strong>. Our staff will provide you
-          with the <strong>best customer service guaranteed</strong>. Please
-          stop by to receive the fresh, breathtaking experience from Sight
-          Givers. <strong>See you there!</strong>
+          with the <strong>best customer service guaranteed</strong>.
+        </p>
+
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+          Please stop by to receive the fresh, breathtaking experience from
+          Sight Givers. <strong>See you there!</strong>
         </p>
 
         <Link

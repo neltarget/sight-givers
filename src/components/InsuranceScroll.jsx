@@ -43,7 +43,7 @@ const row2Logos = logos.slice(8);
 
 export default function InsuranceScroll() {
   return (
-    <section className="bg-gray-50 border-t border-gray-200 py-12 px-4 md:py-16 overflow-hidden">
+    <section className="bg-gray-50 border-t border-gray-200 py-8 px-4 md:py-12 overflow-hidden">
       <style>{`
         .insurance-scroll-mask {
           mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
@@ -73,14 +73,14 @@ export default function InsuranceScroll() {
         }
       `}</style>
 
-      <div className="max-w-5xl mx-auto text-center mb-10">
+      <div className="max-w-5xl mx-auto text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-3">
           <ShieldCheck className="w-5 h-5 text-emerald-600" />
           <span className="text-sm font-semibold uppercase tracking-wider text-emerald-600">
             Accepted Insurance
           </span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-bold md:text-3xl text-gray-900 mb-2">
           We work with your insurance provider
         </h2>
         <p className="text-gray-500 max-w-xl mx-auto">

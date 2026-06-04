@@ -26,7 +26,7 @@ export default function TrustFactors() {
 
   return (
     <section className="text-center">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl font-bold md:text-3xl mb-4">
         Why patients trust Sight Givers
       </h2>
       <div className="grid md:grid-cols-4 gap-6">

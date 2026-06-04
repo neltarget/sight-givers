@@ -9,7 +9,7 @@ import ServiceSummary from "../components/ServiceSummary";
 
 export default function Home() {
   return (
-    <section className="space-y-10">
+    <section className="space-y-6">
       <Hero />
       <TrustFactors />
       <InsuranceScroll />

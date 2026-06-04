@@ -64,14 +64,14 @@ const services = [
 
 const ServiceSummary = () => {
   return (
-    <section className="py-16 sm:py-20 bg-gray-50">
+    <section className="pt-6 pb-10 sm:pt-8 sm:pb-14 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-12 text-center sm:mb-16">
+        <div className="mb-8 text-center sm:mb-10">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-600">
             What we offer
           </p>
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
             Our Services
           </h2>
           <div className="mx-auto mb-6 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500" />
