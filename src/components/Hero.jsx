@@ -39,7 +39,7 @@ const slides = [
     actions: [
       {
         type: "link",
-        to: "/about",
+        to: "/about/meet-the-team",
         label: "Meet Our Doctors",
         variant: "primary",
       },
@@ -69,7 +69,7 @@ const slides = [
     actions: [
       {
         type: "link",
-        to: "/services",
+        to: "/services/glasses-contacts",
         label: "Explore Glasses",
         variant: "primary",
       },

@@ -64,7 +64,7 @@ const services = [
 
 const ServiceSummary = () => {
   return (
-    <section className="pt-6 pb-10 sm:pt-8 sm:pb-14 bg-gray-50">
+    <section className="pt-4 pb-10 sm:pt-6 sm:pb-4 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8 text-center sm:mb-10">

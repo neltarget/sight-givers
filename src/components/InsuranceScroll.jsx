@@ -1,4 +1,5 @@
 import { ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import nhis from "../assets/images/insurance/nhis.png";
 import doshInsurance from "../assets/images/insurance/dosh-insurance.png";
@@ -42,8 +43,13 @@ const row1Logos = logos.slice(0, 9);
 const row2Logos = logos.slice(8);
 
 export default function InsuranceScroll() {
+  const navigate = useNavigate();
+
   return (
-    <section className="bg-gray-50 border-t border-gray-200 py-8 px-4 md:py-12 overflow-hidden">
+    <section
+      className="bg-gray-50 border-t border-gray-200 py-8 px-4 md:py-12 overflow-hidden cursor-pointer"
+      onClick={() => navigate("/patient-resources/insurance-payment")}
+    >
       <style>{`
         .insurance-scroll-mask {
           mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
